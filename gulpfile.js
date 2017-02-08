@@ -22,7 +22,7 @@ var gulp            = require('gulp'),
     reload          = browserSync.reload,
     $               = require('gulp-load-plugins')(),
     del             = require('del');
-    //runSequence     = require('run-sequence');
+    runSequence     = require('run-sequence');
 
 
 // optimize images
