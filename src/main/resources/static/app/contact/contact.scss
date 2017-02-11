@@ -1,1 +1,24 @@
 //contact page scss starts here
+.contact-us {
+    .form-horizontal {
+        fieldset {
+            .form-group {
+               padding-right: 50px;
+               label {
+                   text-align: left;
+               }
+               input {
+                   max-width: 100%;
+               } 
+            }
+            .has-error {
+                input {
+                    border: 1px solid #a94442;
+                }
+            }
+        }
+    }
+   .email-address {
+       margin: 0;
+   } 
+}
