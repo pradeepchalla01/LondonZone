@@ -1,7 +1,7 @@
 <div class="home-page-div">
     <h3 class="text-left home-header">London Tube Station Start Letter</h3>
     <div class="station-letters-div col-xs-12">
-        <span class="letter" ng-repeat="alphabet in alphabets">{{alphabet}}</span>
+        <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)">{{alphabet}}</span>
     </div>
     <div class="col-xs-12 col-sm-8 search-div">
         <div class="input-group">

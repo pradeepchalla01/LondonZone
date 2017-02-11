@@ -7,9 +7,19 @@
 
 	function homeController($scope, QueryService){
         QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
-            $scope.zoneDetails = trainDetails.data;
+            $scope.totalZoneDetails = trainDetails.data;
+            $scope.zoneDetails = $scope.totalZoneDetails;
         });
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        $scope.getZoneDetails = function(letter){
+            $scope.zoneDetails = [];
+            console.log($scope.totalZoneDetails);
+            angular.forEach($scope.totalZoneDetails, function(zone) {
+                if(zone.name.startsWith(letter)){
+                    $scope.zoneDetails.push(zone);
+                }
+            });
+        }
         /*$scope.zoneDetails = [
             {
                 'stationName':'Abbey Road',
