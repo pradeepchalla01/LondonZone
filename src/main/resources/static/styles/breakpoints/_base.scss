@@ -33,6 +33,44 @@ ul {
 	padding: 0;
 }
 
+
+/*********************************
+MAIN STYLES FOR ADS and CONTAINER
+**********************************/
+
+.container-fluid {
+	padding: 0 50px !important;
+}
+
+.nav-container {
+	padding: 0 !important;
+}
+
+.ad-container-vertical {
+	height: 130px;
+    width: 100%;
+    margin: 25px auto;
+    border: 1px solid;
+	text-align: center;
+	padding: 40px;
+	clear: both;
+}
+
+.ad-container-horizontal {
+	min-height: 400px;
+    width: 180px;
+    border: 1px solid;
+    text-align: center;
+	float: left;
+	margin-right: 25px;
+	margin-bottom: 25px;
+    padding: 225px 0;
+    }
+
+.nav-container {
+	
+}
+
 /*********************
 LAYOUT & GRID STYLES
 *********************/
