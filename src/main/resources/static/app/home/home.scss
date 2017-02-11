@@ -3,4 +3,34 @@
 	.home-header{
 		padding: 0 10px;
 	}
+	.station-letters-div{
+		padding: 0 10px;
+		margin: 20px 0;
+		.letter{
+			font-size: 15px;
+			padding: 5px;
+			font-weight: bold;
+			cursor: pointer;
+		}
+	}
+	.search-div{
+		margin: 20px 0;	
+	}
+	.table{
+		border: 1px solid #1E3F4E;
+		thead{
+			tr{
+				background: #1E3F4E;
+				th{
+					border-bottom: 0 none;
+					color: #fff;
+					font-weight: normal;
+				}
+			}
+		}
+		td{
+			border: 1px solid #1E3F4E;
+			vertical-align: middle;
+		}
+	}
 }

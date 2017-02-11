@@ -1,3 +1,32 @@
 <div class="home-page-div">
     <h3 class="text-left home-header">London Tube Station Start Letter</h3>
+    <div class="station-letters-div">
+        <span class="letter" ng-repeat="alphabet in alphabets">{{alphabet}}</span>
+    </div>
+    <div class="col-xs-6 search-div">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="London Tube Station or Post Code">
+            <span class="input-group-btn">
+                <button class="btn btn-info" type="button">Find Zone</button>
+            </span>
+        </div>
+    </div>
+    <div class="col-xs-8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Station Name</th>
+                    <th>Station Zone</th>
+                    <th width="25%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="zone in zoneDetails">
+                    <td>{{zone.stationName}}</td>
+                    <td>{{zone.londonZone}}</td>
+                    <td class="text-center"><button class="btn btn-info" type="button">View Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
