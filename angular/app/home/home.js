@@ -5,9 +5,12 @@
         .module('londonZones.home',[])
         .controller('homeController', homeController);
 
-	function homeController($scope){
+	function homeController($scope, QueryService){
+        QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
+            $scope.zoneDetails = trainDetails.data;
+        });
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-        $scope.zoneDetails = [
+        /*$scope.zoneDetails = [
             {
                 'stationName':'Abbey Road',
                 'londonZone':'Zone 2/3'
@@ -21,6 +24,6 @@
                 'stationName':'Aldgate',
                 'londonZone':'Zone 1'
             }
-        ]
+        ]*/
     }  
  })();

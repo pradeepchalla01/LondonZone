@@ -21,9 +21,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="zone in zoneDetails">
-                    <td>{{zone.stationName}}</td>
-                    <td>{{zone.londonZone}}</td>
+                <tr ng-repeat="zone in zoneDetails | limitTo: 10">
+                    <td>{{zone.name}}</td>
+                    <td>{{zone.zone}}</td>
                     <td class="text-center"><button class="btn btn-info" type="button">View Details</button></td>
                 </tr>
             </tbody>

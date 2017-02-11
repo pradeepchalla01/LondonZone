@@ -11,7 +11,7 @@
   angular
   	.module('londonZones')
     .constant('CONSTANTS', {
-      'API_URL': 'http://www.yourAPIurl.com/'
+      'API_URL': 'http://localhost:3000/'
     });
 
 
