@@ -6,6 +6,7 @@
 	.station-letters-div{
 		padding: 0 10px;
 		margin: 20px 0;
+		word-wrap: break-word;
 		.letter{
 			font-size: 15px;
 			padding: 5px;
@@ -32,5 +33,11 @@
 			border: 1px solid #1E3F4E;
 			vertical-align: middle;
 		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.zone-details-div{
+		padding: 0 5px !important;
 	}
 }

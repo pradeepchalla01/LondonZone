@@ -3,7 +3,7 @@
     .form-horizontal {
         fieldset {
             .form-group {
-               padding-right: 50px;
+               //padding-right: 50px;
                label {
                    text-align: left;
                }
@@ -21,4 +21,10 @@
    .email-address {
        margin: 0;
    } 
+}
+
+@media only screen and (max-width: 768px) {
+    .contact-us{
+        padding: 20px;
+    }
 }

@@ -39,7 +39,7 @@ MAIN STYLES FOR ADS and CONTAINER
 **********************************/
 
 .container-fluid {
-	padding: 0 50px !important;
+	padding: 0 40px !important;
 }
 
 .nav-container {
@@ -47,6 +47,7 @@ MAIN STYLES FOR ADS and CONTAINER
 	min-height: 400px !important;
 	border: 1px solid;
 	margin-bottom: 25px;
+	float: right !important;
 }
 
 .ad-container-vertical {
@@ -61,15 +62,18 @@ MAIN STYLES FOR ADS and CONTAINER
 
 .ad-container-horizontal {
 	min-height: 400px;
-    width: 180px;
+    width: 15% !important;
     border: 1px solid;
     text-align: center;
 	float: left;
-	margin-right: 25px;
+	//margin-right: 20px;
 	margin-bottom: 25px;
     padding: 225px 0;
-    }
+}
 
+.content-div{
+	padding: 0 !important;
+}
 
 /*********************
 LAYOUT & GRID STYLES
@@ -152,9 +156,9 @@ HEADER STYLES
 }
 
 #inner-header {
-	width: 100%;
-	padding: 0 50px;
-	text-align: center;
+	width: 100% !important;
+	padding: 0 30px;
+	text-align: left;
 
 	a {
 		font-size: $small;
@@ -262,6 +266,9 @@ MAIN PAGE
 	}
 }
 
+.margin-top0{
+	margin-top: 0;
+}
 /*********************
 FOOTER STYLES
 *********************/
@@ -270,4 +277,17 @@ FOOTER STYLES
 	clear: both;
 	background-color: $black;
 	color: $light-gray;
+}
+
+@media only screen and (max-width: 768px) {
+	.container-fluid {
+		padding: 0 15px !important;
+	}
+	.nav-container{
+		border-radius: 0 !important;
+		padding: 0 !important;
+	}
+	#inner-header{
+		padding: 10px 30px;
+	}
 }
