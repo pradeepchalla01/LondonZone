@@ -43,7 +43,10 @@ MAIN STYLES FOR ADS and CONTAINER
 }
 
 .nav-container {
-	padding: 0 !important;
+	padding: 20px !important;
+	min-height: 400px !important;
+	border: 1px solid;
+	margin-bottom: 25px;
 }
 
 .ad-container-vertical {
@@ -67,10 +70,6 @@ MAIN STYLES FOR ADS and CONTAINER
     padding: 225px 0;
     }
 
-.nav-container {
-	min-height: 400px !important;
-	border: 1px solid;
-}
 
 /*********************
 LAYOUT & GRID STYLES
