@@ -15,7 +15,7 @@ import com.londonzone.domain.Zone;
 import com.londonzone.service.LondonZoneServiceImpl;
 
 @Controller
-public class GreetingController {
+public class ZoneController {
 
 	@Autowired
 	private LondonZoneServiceImpl service;
