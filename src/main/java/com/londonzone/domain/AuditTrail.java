@@ -10,9 +10,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="AUDIT_TRAIL", schema="")
+@Table(name = "AUDIT_TRAIL", schema = "")
 public class AuditTrail {
-	
+
 	@Id
 	@SequenceGenerator(name = "my_seq", sequenceName = "hibernate_sequence")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")

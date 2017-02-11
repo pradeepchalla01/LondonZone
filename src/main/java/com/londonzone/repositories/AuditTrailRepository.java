@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.londonzone.domain.AuditTrail;
 
 @Repository
-public interface AuditTrailRepository extends CrudRepository<AuditTrail, Integer>{
-	
-	
+public interface AuditTrailRepository extends CrudRepository<AuditTrail, Integer> {
+
 }
-
-

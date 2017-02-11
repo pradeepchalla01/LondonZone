@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TRAIN_STATION_TYPE", schema = "")
 public class TrainStationType {
-	
+
 	@Id
 	@SequenceGenerator(name = "my_seq", sequenceName = "hibernate_sequence")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")

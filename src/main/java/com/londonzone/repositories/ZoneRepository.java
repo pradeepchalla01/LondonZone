@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.londonzone.domain.Zone;
 
 @Repository
-public interface ZoneRepository extends CrudRepository<Zone, Integer>{
+public interface ZoneRepository extends CrudRepository<Zone, Integer> {
 }
