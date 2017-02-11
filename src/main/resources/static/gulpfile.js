@@ -53,7 +53,7 @@ gulp.task('minify-js', function() {
 
 // minify CSS
 gulp.task('minify-css', function() {
-  gulp.src(['./styles/**/*.css', '!./styles/**/*.min.css'])
+  gulp.src(['./app/**/*.css', './styles/**/*.css', '!./styles/**/*.min.css'])
     .pipe($.rename({suffix: '.min'}))
     .pipe($.minifyCss({keepBreaks:true}))
     .pipe(gulp.dest('./styles/'))
@@ -237,9 +237,9 @@ gulp.task('default', ['browser-sync', 'sass', 'minify-css'], function() {
       reload(file.path);
     }
   });
-  gulp.watch(['*.html', 'components/**/*.html', 'views/*.html'], ['bs-reload']);
-  gulp.watch(['app/*.js', 'components/**/*.js', 'js/*.js'], ['bs-reload']);
-  gulp.watch('styles/**/*.scss', ['sass', 'minify-css']);
+  gulp.watch(['*.html', 'app/**/*.html', 'components/**/*.html', 'views/*.html'], ['bs-reload']);
+  gulp.watch(['app/*.js', 'app/**/*.js', 'components/**/*.js', 'js/*.js'], ['bs-reload']);
+  gulp.watch(['app/**/*.scss', 'styles/**/*.scss'], ['sass', 'minify-css']);
 });
 
 
