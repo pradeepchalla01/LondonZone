@@ -1,6 +1,6 @@
 {
   "name": "london-zone",
-  "version": "1.1.7",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "London Zone is Within London, all London Underground, National Rail, London Overground, TfL Rail and Docklands Light Railway stations are assigned to nine fare zones.",
   "main": "app/app.js",
