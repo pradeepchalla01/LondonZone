@@ -7,6 +7,7 @@
 
 	function homeController($scope, QueryService){
         QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
+        //QueryService.query('GET', 'trainDetails').then(function(trainDetails){
             $scope.totalZoneDetails = trainDetails.data;
             $scope.zoneDetails = $scope.totalZoneDetails;
         });
