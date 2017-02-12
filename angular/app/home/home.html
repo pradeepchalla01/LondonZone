@@ -11,7 +11,7 @@
             </span>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails">
         <table class="table">
             <thead>
                 <tr>
@@ -24,9 +24,46 @@
                 <tr ng-repeat="zone in zoneDetails | limitTo: 10">
                     <td>{{zone.name}}</td>
                     <td>{{zone.zone}}</td>
-                    <td class="text-center"><button class="btn btn-info" type="button">View Details</button></td>
+                    <td class="text-center"><button class="btn btn-info" type="button" ng-click="dispalyDetails(zone)" >View Details</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+    {{displayviewDetails}}
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div"  ng-show="displayviewDetails">
+        <table class="table displayZone">
+            <tbody>
+                <tr>
+                    <td>Station Name</td>
+                    <td>{{displayZone.name}}</td>
+                </tr>
+                <tr>
+                    <td>Station Zone</td>
+                    <td>{{displayZone.zone}}</td> 
+                </tr>
+                <tr>
+                    <td>Station Address</td>
+                    <td>{{displayZone.address}}</td> 
+                </tr>
+                <tr>
+                    <td>Station PostCode</td>
+                    <td>{{displayZone.postCode}}</td> 
+                </tr>
+                <tr>
+                    <td>Station Type</td>
+                    <td>{{displayZone.stationType}}</td> 
+                </tr>
+                <tr>
+                    <td>Station Longitude</td>
+                    <td>{{displayZone.longitude}}</td> 
+                </tr>
+                <tr>
+                    <td>Station Latitude</td>
+                     <td>{{displayZone.latitude}}</td> 
+                </tr>
+            </tbody>
+        </table>
+       <button class="btn btn-info" type="button" ng-click="showAllZones()" >Back</button>
+    </div>
+
 </div>

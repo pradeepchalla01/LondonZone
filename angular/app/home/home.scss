@@ -35,6 +35,21 @@
 		}
 	}
 }
+.displayZone tbody {
+	tr {
+		border: 1px solid #1E3F4E;
+	}
+	tr > td:first-child{
+		background-color: #1E3F4E;
+		color: #fff;
+		border: 1px solid #fff;
+		border-top: 1px solid #1E3F4E;
+		border-left: 1px solid #1E3F4E;
+	}
+	tr > td:last-child{
+		border-bottom: 1px solid #1E3F4E;
+	}
+}
 
 @media only screen and (max-width: 768px) {
 	.zone-details-div{

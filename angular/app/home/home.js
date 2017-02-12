@@ -6,6 +6,8 @@
         .controller('homeController', homeController);
 
 	function homeController($scope, QueryService){
+        console.log($scope);
+        $scope.displayviewDetails = true;
         QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
         //QueryService.query('GET', 'trainDetails').then(function(trainDetails){
             $scope.totalZoneDetails = trainDetails.data;
@@ -21,6 +23,18 @@
                 }
             });
         }
+
+        $scope.dispalyDetails = function(details){
+            $scope.displayviewDetails = false;
+            $scope.displayZone = details;
+        }
+
+        $scope.showAllZones = function(){
+            $scope.displayviewDetails = true;
+        }
+        
+
+
         /*$scope.zoneDetails = [
             {
                 'stationName':'Abbey Road',
