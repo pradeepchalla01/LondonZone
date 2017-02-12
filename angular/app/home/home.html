@@ -11,7 +11,7 @@
             </span>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!displayviewDetails">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && zoneDetails.length">
         <table class="table">
             <thead>
                 <tr>
@@ -29,7 +29,10 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div"  ng-show="displayviewDetails">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
+        <h3 class="no-results text-center">No Results Found</h3>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-hide="displayviewDetails">
         <table class="table displayZone">
             <tbody>
                 <tr>
