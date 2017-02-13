@@ -23,36 +23,27 @@
 		margin: 20px 0;	
 	}
 	.table{
-		border: 1px solid #1E3F4E;
-		thead{
-			tr{
-				background: #1E3F4E;
-				th{
-					border-bottom: 0 none;
-					color: #fff;
-					font-weight: normal;
-				}
-			}
+		th, td {
+		    border-bottom: 1px solid #ddd;
+		    vertical-align: middle ;
 		}
-		td{
-			border: 1px solid #1E3F4E;
-			vertical-align: middle;
+	}
+	.zone-details-div {
+		.action{
+			text-align:center;
+		}
+		.station-details {
+			margin-left: 12px;
+			font-size: 20px;
+			font-weight: 600;
 		}
 	}
 }
-.displayZone tbody {
-	tr {
-		border: 1px solid #1E3F4E;
-	}
-	tr > td:first-child{
-		background-color: #1E3F4E;
-		color: #fff;
-		border: 1px solid #fff;
-		border-top: 1px solid #1E3F4E;
-		border-left: 1px solid #1E3F4E;
-	}
-	tr > td:last-child{
-		border-bottom: 1px solid #1E3F4E;
+.displayZone {
+	tbody tr > td:first-child{
+		font-size: 14px;
+		font-weight: 600;
+		padding: 14px;
 	}
 }
 
@@ -65,4 +56,19 @@
 
 .ng-hide {
 	display: none;
+}
+.header a{
+	font-weight:400 !important;
+}
+
+@media only screen and (max-width:768px){
+	.main-nav {
+		display: none;
+	} 
+	.hamburger{
+		background: #fff;
+	    padding: 10px;
+	    text-align: center;
+	
+	}
 }
