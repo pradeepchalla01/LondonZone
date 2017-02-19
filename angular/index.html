@@ -34,25 +34,48 @@
 	</head>
 
 	<body class="main-wrapper">
-	
-		<!--[if lt IE 8]>
-		    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-		<![endif]-->
+		<nav class="avbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <!-- london zone menu starts here-->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		     <!--  <a class="navbar-brand" href="#">Brand</a> -->
+		    </div>
 
-		<!-- Navigation -->
-		<main-nav></main-nav>
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li ui-sref-active="active">
+                    <a ui-sref="home">Home</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="aboutLondonZones">About London Zones</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="contact">Contact Us</a>
+                </li>
 
+		      </ul>
+		    </div>
+		  </div>
+		</nav> 
+ 
 		<!-- Main view for templates -->
 		<div class="container-fluid">
 			<!-- <div class="ad-container-vertical col-xs-12">
 				<h4>Google Ad Service</h4>
 			</div> -->
 
-			<div class="col-xs-12 content-div">
+			<div class="col-xs-12">
 				<!-- <div class="ad-container-horizontal col-sm-2 hidden-xs">
 					<h4>Google Ad Service</h4>
 				</div> -->
-				<div data-ng-view="" class="nav-container col-sm-12 col-xs-12 well"></div>
+				<!-- <div class="index-view" ui-view="main"></div> -->
+				<div ui-view="main" class="display-content col-sm-12 col-xs-12 well"></div>
 			</div>
 			<!-- <div class="ad-container-vertical margin-top0 col-xs-12">
 				<h4>Google Ad Service</h4>
@@ -64,8 +87,6 @@
 	<!-- build:nonangularlibs js/nonangularlibs.js -->
 	<script type="text/javascript" src="js/nonangular/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/nonangular/bootstrap.min.js"></script>
-	
-
 
 	<!-- endbuild -->
 
@@ -73,13 +94,14 @@
 	<!-- build:libs js/libs.js -->
 	<script type="text/javascript" src="js/nonangular/lodash.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
-	<script type="text/javascript" src="bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js"></script>
+<!-- 	<script type="text/javascript" src="bower_components/OwlCarousel/owl-carousel/owl.carousel.min.js"></script> -->
 	<!-- endbuild -->
 
 	<!-- Angular external libraries for application -->
 	<!-- build:angularlibs js/angularlibs.js -->
 	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
-	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
 	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 	<!-- endbuild -->
 
@@ -91,13 +113,13 @@
 	<script type="text/javascript" src="app/home/home.js"></script>
 	<script type="text/javascript" src="app/contact/contact.js"></script>
 	<script type="text/javascript" src="app/about_london_zones/about_london_zones.js"></script>
-
-	<script type="text/javascript" src="components/services/LocalStorage.service.js"></script>
 	<script type="text/javascript" src="components/services/queryService.service.js"></script>
-	<script type="text/javascript" src="components/directives/numbers-only.directive.js"></script>
-	<script type="text/javascript" src="components/directives/main.nav.directive.js"></script>
+
+	<!-- <script type="text/javascript" src="components/services/LocalStorage.service.js"></script>
+	<script type="text/javascript" src="components/directives/numbers-only.directive.js"></script>  
+ 	<script type="text/javascript" src="components/directives/main.nav.directive.js"></script>
 	<script type="text/javascript" src="components/directives/responsive.nav.directive.js"></script>
-	<script type="text/javascript" src="components/directives/owl.slider.directive.js"></script>
+	<script type="text/javascript" src="components/directives/owl.slider.directive.js"></script> -->
 	<!-- endbuild -->
 
 	<!-- Application sections -->

@@ -6,7 +6,7 @@
    */
   angular
     .module('londonZones', [
-      'ngRoute',
+      'ui.router',
       'londonZones.home',
       'londonZones.contact',
       'londonZones.aboutlondonZones',
@@ -15,7 +15,7 @@
 
   // safe dependency injection
   // this prevents minification issues
-  config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider', '$compileProvider'];
+  config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', '$compileProvider'];
 
   /**
    * App routing
@@ -24,33 +24,41 @@
    * into separate file
    * 
    */
-  function config($routeProvider, $locationProvider, $httpProvider, $compileProvider) {
+  function config($stateProvider, $urlRouterProvider, $httpProvider, $compileProvider) {
 
-    $locationProvider.html5Mode(false);
-
+    
+    
     // routes
-    $routeProvider
-      .when('/', {
-        templateUrl: 'app/home/home.html',
-        controller: 'homeController',
-        controllerAs: 'vm'
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        views: {
+          "main": {
+              templateUrl: 'app/home/home.html',
+              controller: 'homeController' 
+            },
+        },
       })
-      .when('/contact', {
-        templateUrl: 'app/contact/contact.html',
-        controller: 'contactController',
-        controllerAs: 'vm'
+      .state('contact', {
+        url: '/contact',
+         views: {
+          "main": {
+              templateUrl: 'app/contact/contact.html',
+              controller: 'contactController' 
+            },
+          },
       })
-      .when('/aboutLondonZones', {
-        templateUrl: 'app/about_london_zones/aboutLondonZones.html',
-        controller: 'aboutLondonZonesController',
-        controllerAs: 'vm'
-      })
-      .otherwise({
-        redirectTo: '/'
+      .state('aboutLondonZones', {
+        url: '/aboutLondonZones',
+         views: {
+          "main": {
+              templateUrl: 'app/about_london_zones/aboutLondonZones.html',
+              controller: 'aboutLondonZonesController' 
+            },
+          },
       });
 
-    $httpProvider.interceptors.push('authInterceptor');
-
+       $urlRouterProvider.otherwise('/home');
   }
 
 

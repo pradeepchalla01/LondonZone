@@ -84,6 +84,7 @@
 	}
 
 }
+
 @media only screen and (min-width:768px){
 	.responsive-wrapper {
 		display: none !important;
@@ -99,3 +100,27 @@
     text-decoration: none !important;
     color: #fff;
 }    
+
+.navbar-nav {
+	margin-left: 16px !important;
+}
+.navbar {
+	margin-bottom: 0 !important;
+}
+.navbar-collapse {
+	text-align: center;	 
+} 
+.display-content {
+	margin-top: 50px;
+}
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+	background-color: #336699 !important;
+    color: white !important;
+}
+@media only screen and (min-width:768px){
+	.navbar-default .navbar-nav{
+	    width: 96% !important;
+	}
+}
