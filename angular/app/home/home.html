@@ -1,11 +1,11 @@
 <div class="home-page-div">
-    <h3 class="text-left home-header">London Tube Station Start Letter</h3>
+    <h3 class="text-left home-header">Search London Tube Station Zone</h3>
     <div class="station-letters-div col-xs-12">
         <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)">{{alphabet}}</span>
     </div>
     <div class="col-xs-12 col-sm-8 search-div">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="London Tube Station or Post Code" ng-model="searchPostCode.postCode">
+            <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
             <span class="input-group-btn">
                 <button class="btn btn-info" type="button">Find Zone</button>
             </span>
@@ -17,7 +17,7 @@
                 <tr>
                     <th> Station Name </th>
                     <th> Station Zone </th>
-                    <th width="25%" class="action" style=""> Action </th>
+                    <th width="25%" class="action"> Action </th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,6 @@
             </tbody>
         </table>
     </div>
-   
     <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
         <h3 class="no-results text-center">No Results Found</h3>
     </div>

@@ -1,6 +1,6 @@
 {
   "name": "london-zone",
-  "version": "1.1.7",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "London Zone is Within London, all London Underground, National Rail, London Overground, TfL Rail and Docklands Light Railway stations are assigned to nine fare zones.",
   "main": "app/app.js",
@@ -40,8 +40,8 @@
     "postinstall": "bower install --no-interactive --allow-root"
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/jbutko/AngularJS-Boilerplate.git"
+    "type": "bitbucket",
+    "url": "https://pradeepchalla@bitbucket.org/findlondonzone/londonzone.git"
   },
   "keywords": [
     "angular",
@@ -52,10 +52,5 @@
     "single-page",
     "spa"
   ],
-  "author": "Jozef Butko",
-  "docs": "https://github.com/jbutko/AngularJS-Boilerplate/blob/master/README.md",
-  "bugs": {
-    "url": "https://github.com/jbutko/AngularJS-Boilerplate/issues"
-  },
-  "homepage": "https://github.com/jbutko/AngularJS-Boilerplate"
+  "author": "Pradeep Challa"
 }
