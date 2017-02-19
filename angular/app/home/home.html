@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="zone in zoneDetails |filter:searchPostCode.postCode| limitTo: 10">
+                <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | filter:searchPostCode.postCode| limitTo: 10">
                     <td>{{zone.name}}</td>
                     <td>{{zone.zone}}</td>
                     <td class="text-center"><button class="btn btn-info" type="button" ng-click="dispalyDetails(zone)" >View Details</button></td>
@@ -29,6 +29,7 @@
             </tbody>
         </table>
     </div>
+   
     <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
         <h3 class="no-results text-center">No Results Found</h3>
     </div>
@@ -73,6 +74,13 @@
             </tbody>
         </table>
        
+    </div>
+    <div class="pagination-div col-xs-12 col-sm-12 col-lg-8 pull-right" ng-show="zoneDetails.length">
+        <ul>
+            <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
+            <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
+            <li><button type="button" class="btn btn-primary" ng-disabled="curPage >= zoneDetails.length/pageSize - 1" ng-click="curPage = curPage+1">NEXT > </button></li>
+        </ul>
     </div>
 
 </div>

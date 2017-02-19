@@ -53,7 +53,15 @@
 	}
 }
 
-
+.pagination-div {
+	display: inline-block;
+	ul {
+			display: inline-block;
+		li{
+			display: inline-block;
+		}
+	}
+}
 .ng-hide {
 	display: none;
 }
