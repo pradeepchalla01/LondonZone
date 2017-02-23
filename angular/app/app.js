@@ -10,6 +10,7 @@
       'londonZones.home',
       'londonZones.contact',
       'londonZones.aboutlondonZones',
+      'ui.bootstrap'
     ])
     .config(config);
 

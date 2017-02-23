@@ -47,6 +47,17 @@
 	}
 }
 
+.station-edit{
+	.station-edit-form{
+		label{
+			text-align: left;
+		}
+		.button-right{
+			float: right;
+		}
+	}
+}
+
 @media only screen and (max-width: 768px) {
 	.zone-details-div{
 		padding: 0 5px !important;

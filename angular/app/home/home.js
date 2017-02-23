@@ -8,6 +8,7 @@
 
 	function homeController($scope, QueryService){
         $scope.displayviewDetails = true;
+        $scope.showEdit = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         // pagination
         $scope.curPage = 0;
@@ -37,6 +38,22 @@
             $scope.displayviewDetails = false;
             $scope.displayZone = details;
         };
+
+        $scope.editDetails = function(details, index){
+            $scope.showEdit = true;
+            $scope.statonIndex = index;
+            $scope.stationDetails = angular.copy(details);
+        }
+
+        $scope.saveStationDetails = function(station){
+            console.log(station);
+            $scope.showEdit = false;
+            $scope.zoneDetails[$scope.statonIndex] = station;
+        }
+
+        $scope.cancelEdit = function(){
+            $scope.showEdit = false;
+        }
 
         $scope.showAllZones = function(){
             $scope.displayviewDetails = true;

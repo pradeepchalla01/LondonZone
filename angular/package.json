@@ -52,5 +52,8 @@
     "single-page",
     "spa"
   ],
-  "author": "Pradeep Challa"
+  "author": "Pradeep Challa",
+  "dependencies": {
+    "angular-ui-bootstrap": "^2.5.0"
+  }
 }
