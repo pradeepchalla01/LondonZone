@@ -1,5 +1,6 @@
 package com.londonzone.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +23,17 @@ public class TrainStation {
 	private String postCode;
 	private Double stationLatitude;
 	private Double stationLongitude;
+	
+	@Column(name = "is_active")
+	private Boolean isActive;
+	
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "train_station_type_fk", referencedColumnName = "id")

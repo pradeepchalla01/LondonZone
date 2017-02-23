@@ -75,4 +75,17 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		}
 		return trainsDetail;
 	}
+
+	@Override
+	public String deleteStation(String id) {
+		if (null!=id) {
+			TrainStation trainStation = trainStationRepository.findOne(Long.valueOf(id));
+			if(null!=trainStation) {
+				trainStation.setIsActive(Boolean.FALSE);
+				trainStation = trainStationRepository.save(trainStation);
+				return "Success";
+			}
+		}
+		return "Failed";
+	}
 }

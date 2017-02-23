@@ -12,4 +12,5 @@ public interface LondonZoneService {
 
 	List<TrainDetail> getTrainsDetail();
 	public List<TrainStationType> getAllStationType();
+	String deleteStation(String id);
 }
