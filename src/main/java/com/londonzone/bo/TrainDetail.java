@@ -13,6 +13,7 @@ public class TrainDetail implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5505406894101932525L;
+	private Long id; 
 	private String name;
 	private String zone;
 	private String address;
@@ -21,6 +22,14 @@ public class TrainDetail implements Serializable {
 	private Double longitude;
 	private Double latitude;
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getName() {
 		return name;
 	}
