@@ -88,4 +88,12 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		}
 		return "Failed";
 	}
+	
+	@Override
+	public TrainStation saveOrEditStation(TrainStation trainStation){
+		if(null != trainStation){
+			trainStation = trainStationRepository.save(trainStation);
+		}
+		return trainStation;
+	}
 }
