@@ -51,7 +51,8 @@
         };
    
 
-            $scope.editDetails = function(details, index){
+        $scope.editDetails = function(details, index){
+            $scope.displayviewDetails = true;    
             $scope.showEdit = true;
             $scope.statonIndex = index;
             $scope.stationDetails = angular.copy(details);
