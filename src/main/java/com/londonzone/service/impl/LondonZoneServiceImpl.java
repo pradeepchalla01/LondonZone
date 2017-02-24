@@ -59,6 +59,7 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		for (TrainStation trainStation : trainStations) {
 			if (null != trainStation) {
 				TrainDetail trainDetail = new TrainDetail();
+				trainDetail.setId(trainStation.getId());
 				trainDetail.setName(trainStation.getName() == null ? "" : trainStation.getName());
 				if (null != trainStation.getZone()) {
 					trainDetail.setZone(trainStation.getZone().getName());
@@ -87,5 +88,13 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 			}
 		}
 		return "Failed";
+	}
+	
+	@Override
+	public TrainStation saveOrEditStation(TrainStation trainStation){
+		if(null != trainStation){
+			trainStation = trainStationRepository.save(trainStation);
+		}
+		return trainStation;
 	}
 }
