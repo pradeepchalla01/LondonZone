@@ -10,7 +10,7 @@
       'londonZones.home',
       'londonZones.contact',
       'londonZones.aboutlondonZones',
-      'ui.bootstrap'
+      'londonZones.admin'
     ])
     .config(config);
 
@@ -55,6 +55,15 @@
           "main": {
               templateUrl: 'app/about_london_zones/aboutLondonZones.html',
               controller: 'aboutLondonZonesController' 
+            },
+          },
+      })
+      .state('admin', {
+        url: '/admin',
+         views: {
+          "main": {
+              templateUrl: 'app/admin/admin.html',
+              controller: 'adminController' 
             },
           },
       });

@@ -1,0 +1,143 @@
+<div class="adminPage">
+    <uib-tabset active="activeJustified" justified="true">
+        <uib-tab index="0" heading="Stations">
+            <h3 class="text-left home-header" ng-show="!showEdit">Search London Tube Station Zone</h3>
+            <div class="station-letters-div col-xs-12" ng-show="!showEdit">
+                <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)" style="cursor:pointer;color: #31b0d5;">{{alphabet}} <span style="padding:5px;color: #333;">|</span> </span>
+            </div>
+            <div class="col-xs-12 col-sm-8 search-div" ng-show="!showEdit">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button">Find Zone</button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && zoneDetails.length && !showEdit">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> Station Name </th>
+                            <th> Station Zone </th>
+                            <th  style="text-align:center;" width="25%" class="action"> Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | filter:searchPostCode.postCode| limitTo: 10">
+                            <td>{{zone.name}}</td>
+                            <td>{{zone.zone}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model = "zone.action" ng-class = "{'buttonChanged' : zone.action =='Deactivated' }   ">
+                                        {{zone.action ? zone.action : "Action" }} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li ng-click ="editDetails(zone, $index)"><a href="#">Edit</a></li>
+                                        <li ng-click ="dispalyDetails(zone)"><a href="#">View Details</a></li>
+                                        <li><a href="#" ng-click ="diactivateZone(zone)">Deactivate</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails()" >Add New Station</button>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
+                <h3 class="no-results text-center">No Results Found</h3>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-hide="displayviewDetails">
+                <div>
+                    <span class="station-details pull-left">Station Details</span>
+                    <span class="pull-right">
+                        <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="showAllZones()" >Back</button>
+                    </span>
+                </div>
+                <table class="table displayZone">
+                    <tbody>
+                        <tr>
+                            <td>Station Name</td>
+                            <td>{{displayZone.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Station Zone</td>
+                            <td>{{displayZone.zone}}</td> 
+                        </tr>
+                        <tr>
+                            <td>Station Address</td>
+                            <td>{{displayZone.address}}</td> 
+                        </tr>
+                        <tr>
+                            <td>Station PostCode</td>
+                            <td>{{displayZone.postCode}}</td> 
+                        </tr>
+                        <tr>
+                            <td>Station Type</td>
+                            <td>{{displayZone.stationType}}</td> 
+                        </tr>
+                        <tr>
+                            <td>Station Longitude</td>
+                            <td>{{displayZone.longitude}}</td> 
+                        </tr>
+                        <tr>
+                            <td>Station Latitude</td>
+                            <td>{{displayZone.latitude}}</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+      
+            <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">
+                <h3>Edit Station</h3>
+                <div class="form-horizontal station-edit-form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="name">Name:</label>
+                        <div class="col-md-8 col-sm-9">
+                            <input id="name" name="name" type="text" ng-model="stationDetails.name" placeholder="Name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="zone">Zone:</label>
+                        <div class="col-md-8 col-sm-9">
+                            <input id="zone" name="zone" type="text" ng-model="stationDetails.zone" placeholder="Zone" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="address">Address:</label>
+                        <div class="col-md-8 col-sm-9">
+                            <input id="address" name="address" type="text" ng-model="stationDetails.address" placeholder="Address" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="postCode">Post Code:</label>
+                        <div class="col-md-8 col-sm-9">
+                            <input id="postCode" name="postCode" type="text" ng-model="stationDetails.postCode" placeholder="Post Code" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="stationType">Station Type:</label>
+                        <div class="col-md-8 col-sm-9">
+                            <input id="stationType" name="stationType" type="text" ng-model="stationDetails.stationType" placeholder="Station Type" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="longitude">Longitude:</label>
+                        <div class="col-md-8 col-sm-9">
+                            <input id="longitude" name="longitude" type="text" ng-model="stationDetails.longitude" placeholder="Longitude" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="latitude">Latitude:</label>
+                        <div class="col-md-8 col-sm-9">
+                            <input id="latitude" name="latitude" type="text" ng-model="stationDetails.latitude" placeholder="Latitude" class="form-control">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
+                    <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails)">Save</button>
+                </div>
+            </div>
+        </uib-tab>
+        <uib-tab index="1" heading="Zones"></uib-tab>
+        <uib-tab index="2" heading="Station Types"></uib-tab>
+    </uib-tabset>
+</div>

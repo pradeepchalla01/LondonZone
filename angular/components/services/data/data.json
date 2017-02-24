@@ -15,7 +15,8 @@
       "postCode":"W3 7LL",
       "stationType":"Train Station",
       "longitude":-0.26295,
-      "latitude":51.50872
+      "latitude":51.50872,
+      "action":"Deactivated"
    },
    {
       "name":"Acton Town",
@@ -33,7 +34,8 @@
       "postCode":"CR0 5AR",
       "stationType":"Light Rail Station",
       "longitude":-0.0328661,
-      "latitude":51.3561976
+      "latitude":51.3561976,
+      "action":"Deactivated"
    },
    {
       "name":"Addiscombe",
