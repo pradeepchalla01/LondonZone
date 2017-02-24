@@ -1,9 +1,15 @@
 .adminPage {
 	.station-letters-admin {
-		margin: 15px 0;
+		margin: 15px 0 0;
 	}
 	.search-admin {
 		margin-bottom: 15px;
+		margin-top: 25px;
+	}
+	.success-text{
+		color: #5cb85c;
+		font-weight: 500;
+		font-size: 16px;
 	}
 	.buttonChanged {
 	 	background: #677582 !important;

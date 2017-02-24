@@ -40,6 +40,16 @@ MAIN STYLES FOR ADS and CONTAINER
 
 .container-fluid {
 	padding: 0 40px !important;
+	.navbar-collapse{
+		ul{
+			li{
+				a{
+					padding-top: 11px;
+					padding-bottom: 11px;
+				}
+			}
+		}
+	}
 }
 
 .nav-container {

@@ -53,6 +53,9 @@
 		.button-right{
 			float: right;
 		}
+		.error-text{
+			color: #F11414;
+		}
 	}
 }
 
@@ -121,6 +124,10 @@
 } 
 .display-content {
 	margin-top: 50px;
+	background-color: #fff !important;
+	border: 0 none !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
 }
 .navbar-default .navbar-nav>.active>a, 
 .navbar-default .navbar-nav>.active>a:focus,
