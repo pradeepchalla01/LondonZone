@@ -1,7 +1,23 @@
 .adminPage {
+	.station-letters-admin {
+		margin: 15px 0;
+	}
+	.search-admin {
+		margin-bottom: 15px;
+	}
 	.buttonChanged {
 	 	background: #677582 !important;
 	 	border: 1px solid #677582 !important;
 	}
-	
+	.station-letters-div {
+		.letter {
+			cursor:pointer;
+			color: #31b0d5;
+			.letter-distance {
+				padding:5px;
+				color: #333;
+			}
+		}
+	} 
+
 }

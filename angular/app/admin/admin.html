@@ -2,10 +2,10 @@
     <uib-tabset active="activeJustified" justified="true">
         <uib-tab index="0" heading="Stations">
             <h3 class="text-left home-header" ng-show="!showEdit">Search London Tube Station Zone</h3>
-            <div class="station-letters-div col-xs-12" ng-show="!showEdit">
-                <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)" style="cursor:pointer;color: #31b0d5;">{{alphabet}} <span style="padding:5px;color: #333;">|</span> </span>
+            <div class="station-letters-div station-letters-admin col-xs-12" ng-show="!showEdit">
+                <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)" >{{alphabet}} <span class="letter-distance" >|</span> </span>
             </div>
-            <div class="col-xs-12 col-sm-8 search-div" ng-show="!showEdit">
+            <div class="col-xs-12 col-sm-8 search-div search-admin" ng-show="!showEdit">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
                     <span class="input-group-btn">

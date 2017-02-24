@@ -7,6 +7,7 @@
   angular
     .module('londonZones', [
       'ui.router',
+      'ui.bootstrap',
       'londonZones.home',
       'londonZones.contact',
       'londonZones.aboutlondonZones',
