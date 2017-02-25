@@ -57,7 +57,7 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		List<TrainDetail> trainsDetail = new ArrayList<TrainDetail>();
 
 		for (TrainStation trainStation : trainStations) {
-			if (null != trainStation) {
+			if (null != trainStation && trainStation.getIsActive()) {
 				TrainDetail trainDetail = new TrainDetail();
 				trainDetail.setId(trainStation.getId());
 				trainDetail.setName(trainStation.getName() == null ? "" : trainStation.getName());
