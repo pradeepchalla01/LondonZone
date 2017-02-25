@@ -50,8 +50,12 @@
 		label{
 			text-align: left;
 		}
-		.button-right{
+		.button-group{
+			width: 20%;
 			float: right;
+			.button-right{
+				float: right;
+			}
 		}
 		.error-text{
 			color: #F11414;

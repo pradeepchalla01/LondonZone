@@ -85,6 +85,9 @@ MAIN STYLES FOR ADS and CONTAINER
 	padding: 0 !important;
 }
 
+.navbar{
+	min-height: 42px !important;
+}
 
 /*********************
 LAYOUT & GRID STYLES
@@ -222,7 +225,9 @@ NAVIGATION STYLES
 	}
 }
 
-
+.display-content{
+	margin-bottom: 60px !important;
+}
 /*********************
 RESPONSIVE NAV
 *********************/
@@ -286,9 +291,13 @@ FOOTER STYLES
 *********************/
 
 .footer {
-	clear: both;
-	background-color: $black;
-	color: $light-gray;
+	background-color: #f8f8f8;
+	border-top: 1px solid #e7e7e7;
+	padding: 20px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;	
 }
 
 @media only screen and (max-width: 768px) {

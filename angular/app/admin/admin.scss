@@ -1,9 +1,16 @@
 .adminPage {
+	table{
+		tr{
+			td{
+				vertical-align: middle !important;
+			}
+		}
+	}
 	.station-letters-admin {
 		margin: 15px 0 0;
 	}
 	.search-admin {
-		margin-bottom: 15px;
+		margin-bottom: 45px;
 		margin-top: 25px;
 	}
 	.success-text{
@@ -19,6 +26,10 @@
 		.letter {
 			cursor:pointer;
 			color: #31b0d5;
+			&.selectedLetter{
+				color: rgb(255, 143, 0);
+    			font-weight: bold;
+			}
 			.letter-distance {
 				padding:5px;
 				color: #333;

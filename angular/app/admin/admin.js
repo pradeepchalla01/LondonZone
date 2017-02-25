@@ -5,7 +5,7 @@
         .module('londonZones.admin',[])
         .controller('adminController', adminController);
 
-	function adminController($scope, QueryService, $timeout, trainDetails, zoneList, stationTypes){
+	function adminController($scope, QueryService, $timeout, trainDetails, zoneList, stationTypes, CONSTANTS){
         $scope.totalZoneDetails = trainDetails;
         $scope.zoneDetails = $scope.totalZoneDetails;
         $scope.zoneList = zoneList;
@@ -13,20 +13,29 @@
         $scope.displayviewDetails = true;
         $scope.showEdit = false;
         $scope.errors = {};
+        $scope.showAdmin = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         //$scope.zoneDetails = [];
-        $scope.requiredFiels = ['name', 'zone', 'address', 'postCode', 'stationType', 'longitude', 'latitude'];
         /*QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
         QueryService.query('GET', 'trainDetails').then(function(trainDetails){
             $scope.totalZoneDetails = trainDetails.data;
             $scope.zoneDetails = $scope.totalZoneDetails;
          });*/
-         
+        $scope.selectedLetter = 'A';
+
+        angular.element(function(){
+            var password = prompt("Enter Password : ", "Please Enter Admin Password");
+            if(password === CONSTANTS.AdminPassword){
+                $scope.showAdmin = true;
+            }
+        })
+
         $scope.getZoneDetails = function(letter){
             $scope.curPage = 0;
             $scope.zoneDetails = [];
             $scope.displayviewDetails = true;
             $scope.stationDeactivated = false;
+            $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function(zone) {
                 if(zone.name.startsWith(letter)){
                     $scope.zoneDetails.push(zone);
@@ -83,23 +92,35 @@
             $scope.showEdit = true;
         }
 
-        $scope.saveStationDetails = function(station){
+        $scope.saveStationDetails = function(station, type){
             $scope.errors.stationDetails = {};
             if(!station){
                 $scope.stationDetails = {};
             }
+            if(type === 'station'){
+                $scope.requiredFiels = ['name', 'zone', 'address', 'postCode', 'stationType', 'longitude', 'latitude'];
+            }else if(type === 'zones' || type === 'stationTypes'){
+                $scope.requiredFiels = ['name', 'description'];
+            }
             angular.forEach($scope.requiredFiels, function(attr){
-                if(!$scope.stationDetails[attr]){
+                if($scope.stationDetails && !$scope.stationDetails[attr]){
                     $scope.errors.stationDetails[attr] = 'This field is required';
                 }
             });
             if(angular.equals({}, $scope.errors.stationDetails)){
-                $scope.showEdit = false;
-                if(station){
+                if(type === 'station'){
+                    console.log(type);
+                    console.log(station);
                     //$scope.zoneDetails[$scope.statonIndex] = station;
-                }else{
-                    $scope.zoneDetails.push(station);
+                }else if(type === 'zones'){
+                    console.log(type);
+                    console.log(station);
+                }else if(type === 'stationTypes'){
+                    console.log(type);
+                    console.log(station);
                 }
+                $scope.zoneDetails.push(station);
+                $scope.showEdit = false;
             }
         }
 
