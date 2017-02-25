@@ -14,15 +14,7 @@
         $scope.curPage = 0;
         $scope.pageSize = 10;
         $scope.zoneDetails = [];
-        QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
-        //QueryService.query('GET', 'trainDetails').then(function(trainDetails){
-            $scope.totalZoneDetails = trainDetails.data;
-            $scope.zoneDetails = $scope.totalZoneDetails;
-        });
-        $scope.numberOfPages = function(){
-            return Math.ceil($scope.zoneDetails.length / $scope.pageSize);
-        };
-        
+        //QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
         $scope.getZoneDetails = function(letter){
             $scope.curPage = 0;
             $scope.zoneDetails = [];
@@ -33,7 +25,15 @@
                 }
             });
         };
-
+        QueryService.query('GET', 'trainDetails').then(function(trainDetails){
+            $scope.totalZoneDetails = trainDetails.data;
+            $scope.zoneDetails = $scope.totalZoneDetails;
+            $scope.getZoneDetails('A');
+        });
+        $scope.numberOfPages = function(){
+            return Math.ceil($scope.zoneDetails.length / $scope.pageSize);
+        };
+        
         $scope.dispalyDetails = function(details){
             $scope.displayviewDetails = false;
             $scope.displayZone = details;

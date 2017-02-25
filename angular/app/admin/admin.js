@@ -5,20 +5,22 @@
         .module('londonZones.admin',[])
         .controller('adminController', adminController);
 
-	function adminController($scope, QueryService, $timeout){
+	function adminController($scope, QueryService, $timeout, trainDetails, zoneList, stationTypes){
+        $scope.totalZoneDetails = trainDetails;
+        $scope.zoneDetails = $scope.totalZoneDetails;
+        $scope.zoneList = zoneList;
+        $scope.stationTypes = stationTypes;
         $scope.displayviewDetails = true;
         $scope.showEdit = false;
         $scope.errors = {};
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-        $scope.zoneDetails = [];
+        //$scope.zoneDetails = [];
         $scope.requiredFiels = ['name', 'zone', 'address', 'postCode', 'stationType', 'longitude', 'latitude'];
-        //$scope.action = "Action";
-        QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
-        //QueryService.query('GET', 'trainDetails').then(function(trainDetails){
+        /*QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
+        QueryService.query('GET', 'trainDetails').then(function(trainDetails){
             $scope.totalZoneDetails = trainDetails.data;
             $scope.zoneDetails = $scope.totalZoneDetails;
-             
-         });
+         });*/
          
         $scope.getZoneDetails = function(letter){
             $scope.curPage = 0;
@@ -33,17 +35,14 @@
         };
 
         $scope.dispalyDetails = function(details){
-            $scope.displayviewDetails = false;
             $scope.displayZone = details;
+            $scope.displayviewDetails = false;
         };
 
         $scope.diactivateZone = function(details, index){
-            console.log(details);
-            //$scope.action =  "Deactivate";
-            
-            // QueryService.query('POST', 'deleteStation', {id: details.zone}).then(function(result){
-            //     console.log("delete station");
-            //  });
+            QueryService.query('POST', 'deleteStation', {id: details.zone}).then(function(result){
+                console.log("delete station");
+            });
             $scope.zoneDetails.splice(index, 1);
             $scope.stationDeactivated = true;
             $timeout(function(){
@@ -56,11 +55,32 @@
         };
    
 
-        $scope.editDetails = function(details, index){
+        $scope.editDetails = function(type, details){
+            if(type === 'station'){
+                if(details){
+                    var stationDetails = angular.copy(details);
+                    angular.forEach($scope.zoneList, function(zone){
+                        if(zone.name == stationDetails.zone){
+                            stationDetails.zone = zone;
+                        }
+                    });
+                    angular.forEach($scope.stationTypes, function(stationType){
+                        if(stationType.name == stationDetails.stationType){
+                            stationDetails.stationType = stationType;
+                        }
+                    });
+                    $scope.stationDetails = stationDetails;
+                } else {
+                    $scope.stationDetails = {
+                        'zone': $scope.zoneList[0],
+                        'stationType': $scope.stationTypes[0]
+                    };
+                }
+            } else {
+                $scope.stationDetails = details;
+            }            
             $scope.displayviewDetails = true;    
             $scope.showEdit = true;
-            $scope.statonIndex = index;
-            $scope.stationDetails = angular.copy(details);
         }
 
         $scope.saveStationDetails = function(station){
@@ -76,7 +96,7 @@
             if(angular.equals({}, $scope.errors.stationDetails)){
                 $scope.showEdit = false;
                 if(station){
-                    $scope.zoneDetails[$scope.statonIndex] = station;
+                    //$scope.zoneDetails[$scope.statonIndex] = station;
                 }else{
                     $scope.zoneDetails.push(station);
                 }

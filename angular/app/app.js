@@ -38,8 +38,8 @@
           "main": {
               templateUrl: 'app/home/home.html',
               controller: 'homeController' 
-            },
-        },
+            }
+        }
       })
       .state('contact', {
         url: '/contact',
@@ -47,8 +47,8 @@
           "main": {
               templateUrl: 'app/contact/contact.html',
               controller: 'contactController' 
-            },
-          },
+            }
+          }
       })
       .state('aboutLondonZones', {
         url: '/aboutLondonZones',
@@ -56,20 +56,37 @@
           "main": {
               templateUrl: 'app/about_london_zones/aboutLondonZones.html',
               controller: 'aboutLondonZonesController' 
-            },
-          },
+            }
+          }
       })
       .state('admin', {
-        url: '/admin',
+        url: '/admin_page',
          views: {
           "main": {
               templateUrl: 'app/admin/admin.html',
-              controller: 'adminController' 
-            },
-          },
+              controller: 'adminController',
+              resolve:{
+                trainDetails:  function(QueryService){
+                  return QueryService.query('GET', 'trainDetails').then(function(data){
+                      return data.data;
+                  });
+                },
+                zoneList:  function(QueryService){
+                  return QueryService.query('GET', 'allZone').then(function(data){
+                      return data.data;
+                  });
+                },
+                stationTypes:  function(QueryService){
+                  return QueryService.query('GET', 'stationTypes').then(function(data){
+                      return data.data;
+                  });
+                }
+              }
+            }
+          }
       });
 
-       $urlRouterProvider.otherwise('/home');
+      $urlRouterProvider.otherwise('/home');
   }
 
 
