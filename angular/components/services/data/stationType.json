@@ -1,0 +1,21 @@
+[{
+	"id": 1,
+	"description": "Bus Station",
+	"name": "Bus Station"
+}, {
+	"id": 2,
+	"description": "Light Rail Station",
+	"name": "Light Rail Station"
+}, {
+	"id": 3,
+	"description": "Subway Station",
+	"name": "Subway Station"
+}, {
+	"id": 4,
+	"description": "Train Station",
+	"name": "Train Station"
+}, {
+	"id": 5,
+	"description": "Transit Station",
+	"name": "Transit Station"
+}]

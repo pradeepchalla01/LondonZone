@@ -1,0 +1,73 @@
+[{
+	"id": 1,
+	"description": "Zone 1",
+	"name": "Zone 1"
+}, {
+	"id": 2,
+	"description": "Zone 2",
+	"name": "Zone 2"
+}, {
+	"id": 3,
+	"description": "Zone 3",
+	"name": "Zone 3"
+}, {
+	"id": 4,
+	"description": "Zone 4",
+	"name": "Zone 4"
+}, {
+	"id": 5,
+	"description": "Zone 5",
+	"name": "Zone 5"
+}, {
+	"id": 6,
+	"description": "Zone 6",
+	"name": "Zone 6"
+}, {
+	"id": 7,
+	"description": "Zone 7",
+	"name": "Zone 7"
+}, {
+	"id": 8,
+	"description": "Zone 8",
+	"name": "Zone 8"
+}, {
+	"id": 9,
+	"description": "Zone 9",
+	"name": "Zone 9"
+}, {
+	"id": 10,
+	"description": "Special",
+	"name": "Special"
+}, {
+	"id": 11,
+	"description": "Zone 1/2",
+	"name": "Zone 1/2"
+}, {
+	"id": 12,
+	"description": "Zone 2/3",
+	"name": "Zone 2/3"
+}, {
+	"id": 13,
+	"description": "Zone 3/4",
+	"name": "Zone 3/4"
+}, {
+	"id": 14,
+	"description": "Zone 4/5",
+	"name": "Zone 4/5"
+}, {
+	"id": 15,
+	"description": "Zone 5/6",
+	"name": "Zone 5/6"
+}, {
+	"id": 16,
+	"description": "Zone 6/7",
+	"name": "Zone 6/7"
+}, {
+	"id": 17,
+	"description": "Zone 7/8",
+	"name": "Zone 7/8"
+}, {
+	"id": 18,
+	"description": "Zone 8/9",
+	"name": "Zone 8/9"
+}]
