@@ -1,4 +1,4 @@
-<div class="adminPage" ng-show="showAdmin">
+<div class="adminPage" ng-if="showAdmin">
     <uib-tabset  active="active">
         <uib-tab index="0" heading="Stations">
             <h3 class="text-left home-header" ng-show="!showEdit">Search London Tube Station Zone</h3>
@@ -93,14 +93,14 @@
                 <h3>Edit Station</h3>
                 <div class="form-horizontal station-edit-form">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="name">Name:</label>
+                        <label class="col-sm-3 control-label">Name:</label>
                         <div class="col-md-8 col-sm-9">
                             <input id="name" name="name" type="text" ng-model="stationDetails.name" placeholder="Name" class="form-control" ng-focus="hideErrorMsg('name','stationDetails')">
                             <div class="error-text" ng-show="errors.stationDetails.name">{{errors.stationDetails.name}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="zone">Zone:</label>
+                        <label class="col-sm-3 control-label">Zone:</label>
                         <div class="col-md-8 col-sm-9">
                             <!--<input id="zone" name="zone" type="text" ng-model="stationDetails.zone" placeholder="Zone" class="form-control" ng-focus="hideErrorMsg('zone','stationDetails')">-->
                             <div class="btn-group">
@@ -116,21 +116,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="address">Address:</label>
+                        <label class="col-sm-3 control-label">Address:</label>
                         <div class="col-md-8 col-sm-9">
                             <input id="address" name="address" type="text" ng-model="stationDetails.address" placeholder="Address" class="form-control" ng-focus="hideErrorMsg('address','stationDetails')">
                             <div class="error-text" ng-show="errors.stationDetails.address">{{errors.stationDetails.address}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="postCode">Post Code:</label>
+                        <label class="col-sm-3 control-label">Post Code:</label>
                         <div class="col-md-8 col-sm-9">
                             <input id="postCode" name="postCode" type="text" ng-model="stationDetails.postCode" placeholder="Post Code" class="form-control" ng-focus="hideErrorMsg('postCode','stationDetails')">
                             <div class="error-text" ng-show="errors.stationDetails.postCode">{{errors.stationDetails.postCode}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="stationType">Station Type:</label>
+                        <label class="col-sm-3 control-label">Station Type:</label>
                         <div class="col-md-8 col-sm-9">
                             <!--<input id="stationType" name="stationType" type="text" ng-model="stationDetails.stationType" placeholder="Station Type" class="form-control" ng-focus="hideErrorMsg('stationType','stationDetails')">-->
                             <div class="btn-group">
@@ -146,20 +146,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="longitude">Longitude:</label>
+                        <label class="col-sm-3 control-label">Longitude:</label>
                         <div class="col-md-8 col-sm-9">
                             <input id="longitude" name="longitude" type="text" ng-model="stationDetails.longitude" placeholder="Longitude" class="form-control" ng-focus="hideErrorMsg('longitude','stationDetails')">
                             <div class="error-text" ng-show="errors.stationDetails.longitude">{{errors.stationDetails.longitude}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="latitude">Latitude:</label>
+                        <label class="col-sm-3 control-label">Latitude:</label>
                         <div class="col-md-8 col-sm-9">
                             <input id="latitude" name="latitude" type="text" ng-model="stationDetails.latitude" placeholder="Latitude" class="form-control" ng-focus="hideErrorMsg('latitude','stationDetails')">
                             <div class="error-text" ng-show="errors.stationDetails.latitude">{{errors.stationDetails.latitude}}</div>
                         </div>
                     </div>
-                    <div class="button-group">
+                    <div class="button-group col-md-8 col-md-offset-3 text-right">
                         <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
                         <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails, 'station')">Save</button>
                     </div>
@@ -200,20 +200,20 @@
                 <h3>Edit Station</h3>
                 <div class="form-horizontal station-edit-form">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="name">Name:</label>
+                        <label class="col-sm-3 control-label">Name:</label>
                         <div class="col-md-8 col-sm-9">
                             <input id="name" name="name" type="text" ng-model="stationDetails.name" placeholder="Name" class="form-control" ng-focus="hideErrorMsg('name','stationDetails')">
                             <div class="error-text" ng-show="errors.stationDetails.name">{{errors.stationDetails.name}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="zone">Description:</label>
+                        <label class="col-sm-3 control-label">Description:</label>
                         <div class="col-md-8 col-sm-9">
                             <textarea class="form-control" ng-model="stationDetails.description"></textarea>
                             <div class="error-text" ng-show="errors.stationDetails.description">{{errors.stationDetails.description}}</div>
                         </div>
                     </div>
-                    <div class="button-group">
+                    <div class="button-group col-md-8 col-md-offset-3 text-right">
                         <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
                         <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails, 'zone')">Save</button>
                     </div>
@@ -253,22 +253,22 @@
                 <h3>Edit Station</h3>
                 <div class="form-horizontal station-edit-form">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="name">Name:</label>
+                        <label class="col-sm-3 control-label">Name:</label>
                         <div class="col-md-8 col-sm-9">
                             <input id="name" name="name" type="text" ng-model="stationDetails.name" placeholder="Name" class="form-control" ng-focus="hideErrorMsg('name','stationDetails')">
                             <div class="error-text" ng-show="errors.stationDetails.name">{{errors.stationDetails.name}}</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" for="zone">Description:</label>
+                        <label class="col-sm-3 control-label">Description:</label>
                         <div class="col-md-8 col-sm-9">
                             <textarea class="form-control" ng-model="stationDetails.description"></textarea>
                             <div class="error-text" ng-show="errors.stationDetails.description">{{errors.stationDetails.description}}</div>
                         </div>
                     </div>
-                    <div class="button-group">
+                    <div class="button-group col-md-8 col-md-offset-3 text-right">
                         <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
-                        <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails, 'stationTypes')">Save</button>
+                        <button type="button" class="btn btn-info" ng-click="saveStationDetails(stationDetails, 'stationTypes')">Save</button>
                     </div>
                 </div>
             </div>

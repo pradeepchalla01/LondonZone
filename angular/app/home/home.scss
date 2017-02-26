@@ -29,7 +29,6 @@
 		}
 	}
 	.zone-details-div {
-		
 		.station-details {
 			margin-left: 12px;
 			font-size: 20px;
@@ -51,11 +50,7 @@
 			text-align: left;
 		}
 		.button-group{
-			width: 20%;
-			float: right;
-			.button-right{
-				float: right;
-			}
+			padding-right: 0;
 		}
 		.error-text{
 			color: #F11414;
