@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.londonzone.bo.TrainDetail;
-import com.londonzone.domain.TrainStation;
+import com.londonzone.bo.TrainStationTo;
 import com.londonzone.domain.TrainStationType;
 import com.londonzone.domain.Zone;
 import com.londonzone.services.LondonZoneService;
@@ -51,7 +51,7 @@ public class ZoneController {
 	}
 	
 	@RequestMapping(value  = "/saveOrEditStation", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody TrainStation saveOrEditStation(@RequestBody TrainStation trainStation) {
+	public @ResponseBody TrainStationTo saveOrEditStation(@RequestBody TrainStationTo trainStation) {
 		if(trainStation !=  null) {			
 			return service.saveOrEditStation(trainStation);
 		}

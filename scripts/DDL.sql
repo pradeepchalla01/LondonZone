@@ -1,1 +1,9 @@
-ALTER TABLE TRAIN_STATION ADD  is_active boolean default true ;
+ALTER TABLE1 TRAIN_STATION ADD  is_active boolean default true 
+
+
+CREATE SEQUENCE public.train_station_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 20;
