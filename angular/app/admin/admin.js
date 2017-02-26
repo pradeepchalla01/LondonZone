@@ -43,6 +43,8 @@
             });
         };
 
+        $scope.getZoneDetails($scope.selectedLetter);
+
         $scope.dispalyDetails = function(details){
             $scope.displayZone = details;
             $scope.displayviewDetails = false;
@@ -62,7 +64,6 @@
         $scope.showAllZones = function(){
             $scope.displayviewDetails = true;
         };
-   
 
         $scope.editDetails = function(type, details){
             if(type === 'station'){
@@ -90,7 +91,7 @@
             }            
             $scope.displayviewDetails = true;    
             $scope.showEdit = true;
-        }
+        };
 
         $scope.saveStationDetails = function(station, type){
             $scope.errors.stationDetails = {};
@@ -122,17 +123,17 @@
                 $scope.zoneDetails.push(station);
                 $scope.showEdit = false;
             }
-        }
+        };
 
         $scope.cancelEdit = function(){
             $scope.showEdit = false;
             $scope.errors = {};
-        }
+        };
 
         $scope.hideErrorMsg = function (id, key) {
             if($scope.errors[key] && $scope.errors[key][id]) {
                 $scope.errors[key][id] = false;
             }
-        }
+        };
     }
  })();
