@@ -1,18 +1,14 @@
-package com.londonzone.domain;
+package com.londonzone.bo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import java.io.Serializable;
 
-@Entity
-public class Zone {
-	@Id
-	@SequenceGenerator(name = "my_seq", sequenceName = "zone_seq")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+public class ZoneBo implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7017967113659933877L;
 	private Integer id;
-
 	private String description;
 	private String name;
 

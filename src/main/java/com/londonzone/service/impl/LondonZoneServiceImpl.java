@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.londonzone.bo.TrainDetail;
+import com.londonzone.bo.TrainStationBo;
+import com.londonzone.bo.TrainStationTypeBo;
+import com.londonzone.bo.ZoneBo;
 import com.londonzone.domain.TrainStation;
 import com.londonzone.domain.TrainStationType;
 import com.londonzone.domain.Zone;
@@ -18,7 +21,8 @@ import com.londonzone.services.LondonZoneService;
 @Service
 public class LondonZoneServiceImpl implements LondonZoneService {
 
-	private ZoneRepository productRepository;
+	@Autowired
+	private ZoneRepository zoneRepository;
 
 	@Autowired
 	private TrainStationRepository trainStationRepository;
@@ -27,8 +31,8 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 	private TrainStationTypeRespository trainStationTypeRespository;
 
 	@Autowired
-	public void setProductRepository(ZoneRepository productRepository) {
-		this.productRepository = productRepository;
+	public void setProductRepository(ZoneRepository zoneRepository) {
+		this.zoneRepository = zoneRepository;
 	}
 
 	@Override
@@ -43,7 +47,7 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 
 	@Override
 	public List<Zone> getAllZones() {
-		Iterable<Zone> zones = productRepository.findAll();
+		Iterable<Zone> zones = zoneRepository.findAll();
 		List<Zone> zoneList = new ArrayList<Zone>();
 		for (Zone zone : zones) {
 			zoneList.add(zone);
@@ -79,9 +83,9 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 
 	@Override
 	public String deleteStation(String id) {
-		if (null!=id) {
+		if (null != id) {
 			TrainStation trainStation = trainStationRepository.findOne(Long.valueOf(id));
-			if(null!=trainStation) {
+			if (null != trainStation) {
 				trainStation.setIsActive(Boolean.FALSE);
 				trainStation = trainStationRepository.save(trainStation);
 				return "Success";
@@ -89,12 +93,83 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		}
 		return "Failed";
 	}
-	
+
 	@Override
-	public TrainStation saveOrEditStation(TrainStation trainStation){
-		if(null != trainStation){
-			trainStation = trainStationRepository.save(trainStation);
+	public TrainStationBo saveOrEditStation(TrainStationBo trainStation) {
+		TrainStation station = null;
+		if (null != trainStation) {
+			station = buildStation(trainStation);
+			station = trainStationRepository.save(station);
+			trainStation.setId(station.getId());
 		}
 		return trainStation;
+	}
+
+	@Override
+	public TrainStationTypeBo saveOrEditStation(TrainStationTypeBo trainStationType) {
+		TrainStationType stationType = null;
+		if (null != trainStationType) {
+			stationType = buildStationType(trainStationType);
+			stationType = trainStationTypeRespository.save(stationType);
+			trainStationType.setId(stationType.getId());
+		}
+		return trainStationType;
+	}
+
+	@Override
+	public ZoneBo saveOrEditStation(ZoneBo zoneBo) {
+		Zone zone = null;
+		if (null != zoneBo) {
+			zone = buildZone(zoneBo);
+			zone = zoneRepository.save(zone);
+			zoneBo.setId(zone.getId());
+		}
+		return zoneBo;
+	}
+
+	private TrainStation buildStation(TrainStationBo trainStationTo) {
+
+		TrainStation trainStation = new TrainStation();
+		trainStation.setId(trainStationTo.getId());
+		trainStation.setAddress(trainStationTo.getAddress());
+		trainStation.setIsActive(Boolean.TRUE);
+		trainStation.setName(trainStationTo.getName());
+		trainStation.setPostCode(trainStationTo.getPostCode());
+		trainStation.setStationLatitude(trainStationTo.getLatitude());
+		trainStation.setStationLongitude(trainStationTo.getLongitude());
+		if (null != trainStationTo.getZoneId()) {
+			Zone zone = zoneRepository.findOne(trainStationTo.getZoneId().intValue());
+			if (null != zone) {
+				trainStation.setZone(zone);
+			}
+		}
+
+		if (null != trainStationTo.getStationTypeId()) {
+			TrainStationType trainStationType = trainStationTypeRespository
+					.findOne(trainStationTo.getStationTypeId().longValue());
+			if (null != trainStationType) {
+				trainStation.setTrainStationType(trainStationType);
+			}
+		}
+
+		return trainStation;
+	}
+
+	private TrainStationType buildStationType(TrainStationTypeBo trainStationTypeBo) {
+
+		TrainStationType trainStationType = new TrainStationType();
+		trainStationType.setId(trainStationTypeBo.getId());
+		trainStationType.setName(trainStationTypeBo.getName());
+		trainStationType.setDescription(trainStationTypeBo.getDescription());
+		return trainStationType;
+	}
+
+	private Zone buildZone(ZoneBo zoneBo) {
+
+		Zone zone = new Zone();
+		zone.setId(zoneBo.getId());
+		zone.setName(zoneBo.getName());
+		zone.setDescription(zoneBo.getDescription());
+		return zone;
 	}
 }

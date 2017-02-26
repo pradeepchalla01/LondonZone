@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.londonzone.bo.TrainDetail;
-import com.londonzone.domain.TrainStation;
+import com.londonzone.bo.TrainStationBo;
+import com.londonzone.bo.TrainStationTypeBo;
+import com.londonzone.bo.ZoneBo;
 import com.londonzone.domain.TrainStationType;
 import com.londonzone.domain.Zone;
 import com.londonzone.services.LondonZoneService;
@@ -51,9 +53,25 @@ public class ZoneController {
 	}
 	
 	@RequestMapping(value  = "/saveOrEditStation", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody TrainStation saveOrEditStation(@RequestBody TrainStation trainStation) {
+	public @ResponseBody TrainStationBo saveOrEditStation(@RequestBody TrainStationBo trainStation) {
 		if(trainStation !=  null) {			
 			return service.saveOrEditStation(trainStation);
+		}
+		return null;
+	}
+	
+	@RequestMapping(value  = "/saveOrEditStationType", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody TrainStationTypeBo saveOrEditStationType(@RequestBody TrainStationTypeBo trainStationType) {
+		if(trainStationType !=  null) {			
+			return service.saveOrEditStation(trainStationType);
+		}
+		return null;
+	}
+	
+	@RequestMapping(value  = "/saveOrEditZone", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody ZoneBo saveOrEditZone(@RequestBody ZoneBo zoneBo) {
+		if(zoneBo !=  null) {			
+			return service.saveOrEditStation(zoneBo);
 		}
 		return null;
 	}
