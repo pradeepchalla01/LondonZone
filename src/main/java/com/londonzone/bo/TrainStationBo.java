@@ -2,7 +2,7 @@ package com.londonzone.bo;
 
 import java.io.Serializable;
 
-public class TrainStationTo implements Serializable {
+public class TrainStationBo implements Serializable {
 
 	/**
 	 * 

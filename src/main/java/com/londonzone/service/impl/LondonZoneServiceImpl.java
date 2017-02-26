@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.londonzone.bo.TrainDetail;
-import com.londonzone.bo.TrainStationTo;
+import com.londonzone.bo.TrainStationBo;
+import com.londonzone.bo.TrainStationTypeBo;
+import com.londonzone.bo.ZoneBo;
 import com.londonzone.domain.TrainStation;
 import com.londonzone.domain.TrainStationType;
 import com.londonzone.domain.Zone;
@@ -93,7 +95,7 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 	}
 
 	@Override
-	public TrainStationTo saveOrEditStation(TrainStationTo trainStation) {
+	public TrainStationBo saveOrEditStation(TrainStationBo trainStation) {
 		TrainStation station = null;
 		if (null != trainStation) {
 			station = buildStation(trainStation);
@@ -103,7 +105,29 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		return trainStation;
 	}
 
-	private TrainStation buildStation(TrainStationTo trainStationTo) {
+	@Override
+	public TrainStationTypeBo saveOrEditStation(TrainStationTypeBo trainStationType) {
+		TrainStationType stationType = null;
+		if (null != trainStationType) {
+			stationType = buildStationType(trainStationType);
+			stationType = trainStationTypeRespository.save(stationType);
+			trainStationType.setId(stationType.getId());
+		}
+		return trainStationType;
+	}
+
+	@Override
+	public ZoneBo saveOrEditStation(ZoneBo zoneBo) {
+		Zone zone = null;
+		if (null != zoneBo) {
+			zone = buildZone(zoneBo);
+			zone = zoneRepository.save(zone);
+			zoneBo.setId(zone.getId());
+		}
+		return zoneBo;
+	}
+
+	private TrainStation buildStation(TrainStationBo trainStationTo) {
 
 		TrainStation trainStation = new TrainStation();
 		trainStation.setId(trainStationTo.getId());
@@ -129,5 +153,23 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		}
 
 		return trainStation;
+	}
+
+	private TrainStationType buildStationType(TrainStationTypeBo trainStationTypeBo) {
+
+		TrainStationType trainStationType = new TrainStationType();
+		trainStationType.setId(trainStationTypeBo.getId());
+		trainStationType.setName(trainStationTypeBo.getName());
+		trainStationType.setDescription(trainStationTypeBo.getDescription());
+		return trainStationType;
+	}
+
+	private Zone buildZone(ZoneBo zoneBo) {
+
+		Zone zone = new Zone();
+		zone.setId(zoneBo.getId());
+		zone.setName(zoneBo.getName());
+		zone.setDescription(zoneBo.getDescription());
+		return zone;
 	}
 }

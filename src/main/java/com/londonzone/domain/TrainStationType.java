@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class TrainStationType {
 
 	@Id
-	@SequenceGenerator(name = "my_seq", sequenceName = "hibernate_sequence")
+	@SequenceGenerator(name = "my_seq", sequenceName = "station_type_seq")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
 	private Long id;
 	private String description;
