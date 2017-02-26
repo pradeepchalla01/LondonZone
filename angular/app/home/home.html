@@ -1,8 +1,9 @@
+<div class="home-page-div">
     <h3 class="text-left home-header">Search London Tube Station Zone</h3>
     <div class="station-letters-div col-xs-12" style = "margin-bottom: 15px;">
-       <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)" style="cursor:pointer;color: #31b0d5;">{{alphabet}} <span style="padding:5px;color: #333;">|</span> </span>
+       <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)" ng-class="{'selectedLetter': selectedLetter === alphabet}">{{alphabet}} <span  class="letter-distance" >|</span> </span>
     </div>
-    <div class="col-xs-12 col-sm-8 search-div" style="margin-bottom: 15px;">
+    <div class="col-xs-12 col-sm-8 search-div">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
             <span class="input-group-btn">
@@ -71,12 +72,12 @@
                 </tr>
             </tbody>
         </table>
-       
     </div>
-    <div class="pagination-div col-xs-12 col-sm-12 col-lg-8 pull-right" ng-show="zoneDetails.length">
+    <div class="pagination-div col-xs-12 col-sm-12 col-lg-7 pull-right" ng-show="zoneDetails.length">
         <ul>
             <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
             <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
             <li><button type="button" class="btn btn-primary" ng-disabled="curPage >= zoneDetails.length/pageSize - 1" ng-click="curPage = curPage+1">NEXT > </button></li>
         </ul>
     </div>
+</div>

@@ -12,15 +12,20 @@
 		margin: 20px 0;
 		word-wrap: break-word;
 		.letter{
-			font-size: 15px;
-			padding: 5px;
-			font-weight: bold;
 			cursor: pointer;
 			color: #31b0d5;
+			&.selectedLetter{
+				color: rgb(255, 143, 0) !important;
+    			font-weight: bold;
+			}
+			.letter-distance {
+				padding:5px;
+				color: #333;
+			}
 		}
 	}
 	.search-div{
-		margin: 20px 0;	
+		margin: 20px 0 45px;	
 	}
 	.table{
 		th, td {
@@ -42,24 +47,6 @@
 		font-size: 14px;
 		font-weight: 600;
 		padding: 14px;
-	}
-}
-
-.station-edit{
-	.station-edit-form{
-		label{
-			text-align: left;
-		}
-		.button-group{
-			width: 20%;
-			float: right;
-			.button-right{
-				float: right;
-			}
-		}
-		.error-text{
-			color: #F11414;
-		}
 	}
 }
 

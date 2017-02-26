@@ -14,11 +14,15 @@
         $scope.curPage = 0;
         $scope.pageSize = 10;
         $scope.zoneDetails = [];
+        $scope.selectedLetter = 'A';
+        $scope.pagination = true;
+        
         //QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
         $scope.getZoneDetails = function(letter){
             $scope.curPage = 0;
             $scope.zoneDetails = [];
             $scope.displayviewDetails = true;
+            $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function(zone) {
                 if(zone.name.startsWith(letter)){
                     $scope.zoneDetails.push(zone);

@@ -33,9 +33,9 @@
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="zone.action">Action <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li ng-click ="editDetails('station', zone)"><a href="#">Edit</a></li>
-                                        <li ng-click ="dispalyDetails(zone)"><a href="#">View Details</a></li>
-                                        <li><a href="#" ng-click ="diactivateZone(zone, $index)">Deactivate</a></li>
+                                        <li ng-click ="editDetails('station', zone)"><a href="">Edit</a></li>
+                                        <li ng-click ="dispalyDetails(zone)"><a href="">View Details</a></li>
+                                        <li><a href="" ng-click ="diactivateZone(zone, $index)">Deactivate</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -159,7 +159,7 @@
                             <div class="error-text" ng-show="errors.stationDetails.latitude">{{errors.stationDetails.latitude}}</div>
                         </div>
                     </div>
-                    <div class="button-group">
+                    <div class="button-group col-xs-8 col-xs-offset-3">
                         <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
                         <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails, 'station')">Save</button>
                     </div>
@@ -187,7 +187,7 @@
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="zone.action">Action <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li ng-click="editDetails('zone', zone)"><a href="#">Edit</a></li>
+                                        <li ng-click="editDetails('zone', zone)"><a href="">Edit</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -213,7 +213,7 @@
                             <div class="error-text" ng-show="errors.stationDetails.description">{{errors.stationDetails.description}}</div>
                         </div>
                     </div>
-                    <div class="button-group">
+                    <div class="button-group col-xs-8 col-xs-offset-3">
                         <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
                         <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails, 'zone')">Save</button>
                     </div>
@@ -240,7 +240,7 @@
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="zone.action">Action <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li ng-click ="editDetails('stationType', stationType)"><a href="#">Edit</a></li>
+                                        <li ng-click ="editDetails('stationType', stationType)"><a href="">Edit</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -266,7 +266,7 @@
                             <div class="error-text" ng-show="errors.stationDetails.description">{{errors.stationDetails.description}}</div>
                         </div>
                     </div>
-                    <div class="button-group">
+                    <div class="button-group col-xs-8 col-xs-offset-3">
                         <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
                         <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails, 'stationTypes')">Save</button>
                     </div>

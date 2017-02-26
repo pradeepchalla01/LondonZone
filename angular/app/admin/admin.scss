@@ -6,6 +6,22 @@
 			}
 		}
 	}
+	.station-edit{
+		.station-edit-form{
+			label{
+				text-align: left;
+			}
+			.button-group{
+				padding: 0 2px 0 8px;
+				.button-right{
+					float: right;
+				}
+			}
+			.error-text{
+				color: #F11414;
+			}
+		}
+	}
 	.station-letters-admin {
 		margin: 15px 0 0;
 	}
