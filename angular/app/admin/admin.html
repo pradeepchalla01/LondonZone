@@ -209,7 +209,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Description:</label>
                         <div class="col-md-8 col-sm-9">
-                            <textarea class="form-control" ng-model="stationDetails.description"></textarea>
+                            <textarea class="form-control" ng-model="stationDetails.description" ng-focus="hideErrorMsg('description','stationDetails')"></textarea>
                             <div class="error-text" ng-show="errors.stationDetails.description">{{errors.stationDetails.description}}</div>
                         </div>
                     </div>
@@ -262,13 +262,13 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Description:</label>
                         <div class="col-md-8 col-sm-9">
-                            <textarea class="form-control" ng-model="stationDetails.description"></textarea>
+                            <textarea class="form-control" ng-model="stationDetails.description" ng-focus="hideErrorMsg('description','stationDetails')"></textarea>
                             <div class="error-text" ng-show="errors.stationDetails.description">{{errors.stationDetails.description}}</div>
                         </div>
                     </div>
                     <div class="button-group col-xs-8 col-xs-offset-3">
                         <button type="button" class="btn btn-default" ng-click="cancelEdit()">Cancel</button>
-                        <button type="button" class="btn btn-info" ng-click="saveStationDetails(stationDetails, 'stationTypes')">Save</button>
+                        <button type="button" class="btn btn-info button-right" ng-click="saveStationDetails(stationDetails, 'stationType')">Save</button>
                     </div>
                 </div>
             </div>
