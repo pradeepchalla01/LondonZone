@@ -15,12 +15,6 @@
         $scope.errors = {};
         $scope.showAdmin = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-        //$scope.zoneDetails = [];
-        /*QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
-        QueryService.query('GET', 'trainDetails').then(function(trainDetails){
-            $scope.totalZoneDetails = trainDetails.data;
-            $scope.zoneDetails = $scope.totalZoneDetails;
-         });*/
         $scope.selectedLetter = 'A';
 
         angular.element(function(){
@@ -51,11 +45,10 @@
         };
 
         $scope.diactivateZone = function(details, index){
-            QueryService.query('POST', 'deleteStation', {id: details.zone}).then(function(result){
-                console.log("delete station");
+            QueryService.query('POST', 'deleteStation', null, details.id).then(function(result){
+                $scope.zoneDetails.splice(index, 1);
+                $scope.stationDeactivated = true;
             });
-            $scope.zoneDetails.splice(index, 1);
-            $scope.stationDeactivated = true;
             $timeout(function(){
                 $scope.stationDeactivated = false
             }, 1500);

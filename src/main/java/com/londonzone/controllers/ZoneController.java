@@ -15,6 +15,7 @@ import com.londonzone.bo.TrainDetail;
 import com.londonzone.bo.TrainStationBo;
 import com.londonzone.bo.TrainStationTypeBo;
 import com.londonzone.bo.ZoneBo;
+import com.londonzone.domain.TrainStation;
 import com.londonzone.domain.TrainStationType;
 import com.londonzone.domain.Zone;
 import com.londonzone.services.LondonZoneService;
@@ -48,7 +49,7 @@ public class ZoneController {
 	}
 	
 	@RequestMapping(value  = "/deleteStation", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody String deleteStation(@RequestBody String stationId) {
+	public @ResponseBody TrainStation deleteStation(@RequestBody String stationId) {
 		return service.deleteStation(stationId);
 	}
 	
