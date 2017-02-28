@@ -17,6 +17,9 @@
         $scope.showAdmin = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.selectedLetter = 'A';
+        $scope.curPage = 0;
+        $scope.pageSize = 10;
+        $scope.pagination = true;
 
         angular.element(function () {
             var password = prompt("Enter Password : ", "Please Enter Admin Password");
@@ -47,6 +50,7 @@
             $http.get('http://postcodes.io/postcodes/' + $scope.searchPostCode.postCode).then(function (result) {
                 if(result.data.status ===  200){
                     var postCodeDetails = result.data.result;
+                    console.log(postCodeDetails);
                 }
             }, function (error) {
                 //TODO: Need to implement search for other Stations
@@ -159,6 +163,17 @@
             if ($scope.errors[key] && $scope.errors[key][id]) {
                 $scope.errors[key][id] = false;
             }
+        };
+
+        $scope.numberOfPages = function(){
+            return Math.ceil($scope.zoneDetails.length / $scope.pageSize);
+        };        
+
+        function pagination(){
+            return function(input, start){
+                start = +start;
+                return input.slice(start);
+            };
         };
     }
 })();

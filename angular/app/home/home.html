@@ -73,7 +73,7 @@
             </tbody>
         </table>
     </div>
-    <div class="pagination-div col-xs-12 col-sm-12 col-lg-7 pull-right" ng-show="zoneDetails.length">
+    <div class="pagination-div col-xs-12 col-sm-12 col-lg-7 pull-right" ng-show="zoneDetails.length && displayviewDetails">
         <ul>
             <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
             <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>

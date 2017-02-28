@@ -4,12 +4,13 @@
           <fieldset>
             <legend class="">Enter Your Questions Below</legend>
             
-            <h4 ng-bind="requiredError" class="text-danger"></h4>
+            <div ng-bind="detailsSaved" class="text-success"></div>
             <!-- Name input-->
             <div class="form-group">
               <label class="col-sm-3 control-label" for="name">Name*:</label>
               <div class="col-md-8 col-sm-9">
-                <input id="name" name="name" type="text" placeholder="Your name" ng-model="contact.name" class="form-control" required>
+                <input id="name" name="name" type="text" placeholder="Your name" ng-model="contact.name" ng-focus="hideErrorMsg('name','contact')" class="form-control" required>
+                <div class="error-text" ng-show="errors.contact.name">{{errors.contact.name}}</div>
               </div>
             </div>
     
@@ -17,16 +18,18 @@
             <div class="form-group">
               <label class="col-sm-3 control-label" for="email">Email Address*:</label>
               <div class="col-md-8 col-sm-9">
-                <input id="email" name="email" type="text" placeholder="Your Email Address" ng-model="contact.email" class="form-control" required>
+                <input id="email" name="email" type="text" placeholder="Your Email Address" ng-focus="hideErrorMsg('email','contact')" ng-model="contact.email" class="form-control" required>
+                <div class="error-text" ng-show="errors.contact.email">{{errors.contact.email}}</div>
               </div>
             </div>
 
 
             <!-- phone number input-->
             <div class="form-group">
-              <label class="col-sm-3 control-label" for="email">Phone Number*:</label>
+              <label class="col-sm-3 control-label" for="phone">Phone Number*:</label>
               <div class="col-md-8 col-sm-9">
-                <input id="email" name="email" type="text" numbers-only ng-model="contact.phone" placeholder="Your Phone Number" class="form-control" required>
+                <input id="email" name="email" type="text" numbers-only ng-model="contact.phone" placeholder="Your Phone Number" ng-focus="hideErrorMsg('phone','contact')" class="form-control" required>
+                <div class="error-text" ng-show="errors.contact.phone">{{errors.contact.phone}}</div>
               </div>
             </div>
     
@@ -34,7 +37,8 @@
             <div class="form-group">
               <label class="col-sm-3 control-label" for="message">Your Question*:</label>
               <div class="col-md-8 col-sm-9">
-                <textarea class="form-control" id="message" name="message" ng-model="contact.question" placeholder="Please enter your question here..." rows="5"></textarea required>
+                <textarea class="form-control" id="message" name="message" ng-model="contact.question" ng-focus="hideErrorMsg('question','contact')" placeholder="Please enter your question here..." rows="5"></textarea required>
+                <div class="error-text" ng-show="errors.contact.question">{{errors.contact.question}}</div>
               </div>
             </div>
     
