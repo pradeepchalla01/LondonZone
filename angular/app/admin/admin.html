@@ -9,7 +9,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
                     <span class="input-group-btn">
-                        <button class="btn btn-info" type="button">Find Zone</button>
+                        <button class="btn btn-info" type="button" ng-click="findZone()">Find Zone</button>
                     </span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | filter:searchPostCode.postCode| limitTo: 10">
+                        <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | limitTo: 10">
                             <td>{{zone.name}}</td>
                             <td>{{zone.zone}}</td>
                             <td class="text-center">

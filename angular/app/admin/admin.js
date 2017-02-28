@@ -5,7 +5,7 @@
         .module('londonZones.admin', [])
         .controller('adminController', adminController);
 
-    function adminController($scope, QueryService, $timeout, trainDetails, zoneList, stationTypes, CONSTANTS) {
+    function adminController($scope, QueryService, $timeout, trainDetails, zoneList, stationTypes, CONSTANTS, $http) {
         $scope.totalZoneDetails = trainDetails;
         $scope.zoneDetails = $scope.totalZoneDetails;
         $scope.zoneList = zoneList;
@@ -13,13 +13,14 @@
         $scope.displayviewDetails = true;
         $scope.showEdit = false;
         $scope.errors = {};
+        $scope.searchPostCode = {postCode: null};
         $scope.showAdmin = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.selectedLetter = 'A';
 
-        angular.element(function(){
+        angular.element(function () {
             var password = prompt("Enter Password : ", "Please Enter Admin Password");
-            if(password === CONSTANTS.AdminPassword){
+            if (password === CONSTANTS.AdminPassword) {
                 $scope.showAdmin = true;
             }
         })
@@ -34,6 +35,22 @@
                 if (zone.name.startsWith(letter)) {
                     $scope.zoneDetails.push(zone);
                 }
+            });
+        };
+
+        $scope.findZone = function () {
+            /***
+             * API to check whether the entered values is valid poscode or not
+             * If it is a valid postcode will return status with 200 and data in result
+             * Otherwise we will get an exception 
+             * */
+            $http.get('http://postcodes.io/postcodes/' + $scope.searchPostCode.postCode).then(function (result) {
+                if(result.data.status ===  200){
+                    var postCodeDetails = result.data.result;
+                }
+            }, function (error) {
+                //TODO: Need to implement search for other Stations
+                console.log(error);
             });
         };
 
@@ -99,7 +116,7 @@
             angular.forEach($scope.requiredFiels, function (attr) {
                 if ($scope.stationDetails && !$scope.stationDetails[attr]) {
                     $scope.errors.stationDetails[attr] = 'This field is required';
-                } else if(!$scope.stationDetails){
+                } else if (!$scope.stationDetails) {
                     $scope.errors.stationDetails[attr] = 'This field is required';
                 }
             });
@@ -114,7 +131,7 @@
                     QueryService.query('POST', 'saveOrEditStation', null, $scope.stationDetails).then(function (result) {
                         console.log(result);
                         $scope.showEdit = false;
-                        if($scope.addStation){
+                        if ($scope.addStation) {
                             $scope.addStation = false;
                             $scope.zoneDetails.push(station);
                         }
