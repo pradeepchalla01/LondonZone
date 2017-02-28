@@ -10,9 +10,11 @@ import com.londonzone.bo.TrainDetail;
 import com.londonzone.bo.TrainStationBo;
 import com.londonzone.bo.TrainStationTypeBo;
 import com.londonzone.bo.ZoneBo;
+import com.londonzone.domain.ContactUs;
 import com.londonzone.domain.TrainStation;
 import com.londonzone.domain.TrainStationType;
 import com.londonzone.domain.Zone;
+import com.londonzone.repositories.ContactUsRepository;
 import com.londonzone.repositories.TrainStationRepository;
 import com.londonzone.repositories.TrainStationTypeRespository;
 import com.londonzone.repositories.ZoneRepository;
@@ -29,6 +31,9 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 
 	@Autowired
 	private TrainStationTypeRespository trainStationTypeRespository;
+	
+	@Autowired
+	private ContactUsRepository contactUsRepository;
 
 	@Autowired
 	public void setProductRepository(ZoneRepository zoneRepository) {
@@ -171,5 +176,11 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 		zone.setName(zoneBo.getName());
 		zone.setDescription(zoneBo.getDescription());
 		return zone;
+	}
+	
+	@Autowired
+	public ContactUs saveContactUs(ContactUs contactUs){
+		contactUs = contactUsRepository.save(contactUs);
+		return contactUs;
 	}
 }
