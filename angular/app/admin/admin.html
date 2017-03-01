@@ -186,7 +186,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="zone in zoneList | pagination: curPage * pageSize | limitTo: 10">
+                        <tr ng-repeat="zone in zoneList">
                             <td>{{zone.name}}</td>
                             <td>{{zone.description}}</td>
                             <td class="text-center">
@@ -201,13 +201,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="pagination-div col-xs-12 col-sm-5 pull-right" ng-show="zoneList.length > 10">
-                    <ul>
-                        <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
-                        <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
-                        <li><button type="button" class="btn btn-primary" ng-disabled="curPage >= zoneList.length/pageSize - 1" ng-click="curPage = curPage+1">NEXT > </button></li>
-                    </ul>
-                </div>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('zone')" >Add Zone</button>
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">
@@ -246,7 +239,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="stationType in stationTypes | pagination: curPage * pageSize | limitTo: 10">
+                        <tr ng-repeat="stationType in stationTypes">
                             <td>{{stationType.name}}</td>
                             <td>{{stationType.description}}</td>
                             <td class="text-center">
@@ -261,13 +254,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="pagination-div col-xs-12 col-sm-5 pull-right" ng-show="stationTypes.length > 10">
-                    <ul>
-                        <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
-                        <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
-                        <li><button type="button" class="btn btn-primary" ng-disabled="curPage >= stationTypes.length/pageSize - 1" ng-click="curPage = curPage+1">NEXT > </button></li>
-                    </ul>
-                </div>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('stationType')" >Add Station Type</button>
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">

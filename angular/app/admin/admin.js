@@ -47,7 +47,8 @@
              * If it is a valid postcode will return status with 200 and data in result
              * Otherwise we will get an exception 
              * */
-            $http.get('http://postcodes.io/postcodes/' + $scope.searchPostCode.postCode).then(function (result) {
+            $scope.searchPostCode.postCode = ($scope.searchPostCode.postCode).replace(/\s/g,'');
+            $http.get('http://api.postcodes.io/postcodes/' + $scope.searchPostCode.postCode).then(function (result) {
                 if(result.data.status ===  200){
                     var postCodeDetails = result.data.result;
                     console.log(postCodeDetails);
