@@ -10,8 +10,12 @@
         $scope.zoneDetails = $scope.totalZoneDetails;
         $scope.zoneList = zoneList;
         $scope.stationTypes = stationTypes;
-        $scope.displayviewDetails = true;
-        $scope.showEdit = false;
+        $scope.displayStationDetails = true;
+        $scope.displayZoneDetails = false;
+        $scope.displayStationTypeDetails = false;
+        $scope.showStationEdit = false;
+        $scope.showZoneEdit = false;
+        $scope.showStationTypeEdit = false;
         $scope.errors = {};
         $scope.searchPostCode = {postCode: null};
         $scope.showAdmin = false;
@@ -26,12 +30,12 @@
             if (password === CONSTANTS.AdminPassword) {
                 $scope.showAdmin = true;
             }
-        })
+        });
 
         $scope.getZoneDetails = function (letter) {
             $scope.curPage = 0;
             $scope.zoneDetails = [];
-            $scope.displayviewDetails = true;
+            $scope.displayStationDetails = true;
             $scope.stationDeactivated = false;
             $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function (zone) {
@@ -63,8 +67,32 @@
 
         $scope.dispalyDetails = function (details) {
             $scope.displayZone = details;
-            $scope.displayviewDetails = false;
+            $scope.displayStationDetails = false;
         };
+
+        $scope.stationTab = function(){
+            $scope.showZoneEdit = false;
+            $scope.showStationTypeEdit = false;
+            $scope.displayZoneDetails = true;
+            $scope.displayStationDetails = true;
+            $scope.displayStationTypeDetails = true;
+        }
+
+        $scope.zoneTab = function(){
+            $scope.displayZoneDetails = true;
+            $scope.displayStationDetails = true;
+            $scope.displayStationTypeDetails = true;
+            $scope.showStationEdit = false;
+            $scope.showStationTypeEdit = false;
+        }
+
+        $scope.stationTypesTab = function(){
+            $scope.displayZoneDetails = true;
+            $scope.displayStationDetails = true;
+            $scope.displayStationTypeDetails = true;
+            $scope.showZoneEdit = false;
+            $scope.showStationEdit = false;
+        }
 
         $scope.diactivateZone = function (details, index) {
             QueryService.query('POST', 'deleteStation', null, details.id).then(function (result) {
@@ -77,11 +105,12 @@
         };
 
         $scope.showAllZones = function () {
-            $scope.displayviewDetails = true;
+            $scope.displayStationDetails = true;
         };
 
         $scope.editDetails = function (type, details) {
             if (type === 'station') {
+                $scope.showStationEdit = true;
                 if (details) {
                     $scope.addStation = false;
                     var stationDetails = angular.copy(details);
@@ -103,11 +132,13 @@
                         'stationType': $scope.stationTypes[0]
                     };
                 }
-            } else {
+            }else if(type === 'zone'){
+                $scope.showZoneEdit = true;
+                $scope.stationDetails = details;
+            }else if(type === 'stationType'){
+                $scope.showStationTypeEdit = true;
                 $scope.stationDetails = details;
             }
-            $scope.displayviewDetails = true;
-            $scope.showEdit = true;
         };
 
         $scope.saveStationDetails = function (station, type) {
@@ -127,6 +158,7 @@
             });
             if (angular.equals({}, $scope.errors.stationDetails)) {
                 if (type === 'station') {
+                    $scope.showStationEdit = false;
                     $scope.stationDetails.stationTypeId = $scope.stationDetails.stationType.id
                     $scope.stationDetails.zoneId = $scope.stationDetails.zone.id
                     $scope.stationDetails.latitude = parseFloat($scope.stationDetails.latitude);
@@ -142,21 +174,27 @@
                         }
                     });
                 } else if (type === 'zone') {
+                    $scope.showZoneEdit = false;
                     QueryService.query('POST', 'saveOrEditZone', null, $scope.stationDetails).then(function (result) {
                         console.log(result);
-                        $scope.showEdit = false;
                     });
                 } else if (type === 'stationType') {
+                    $scope.showStationTypeEdit = false;
                     QueryService.query('POST', 'saveOrEditStationType', null, $scope.stationDetails).then(function (result) {
                         console.log(result);
-                        $scope.showEdit = false;
                     });
                 }
             }
         };
 
-        $scope.cancelEdit = function () {
-            $scope.showEdit = false;
+        $scope.cancelEdit = function (type) {
+            if(type === 'station'){
+                $scope.showStationEdit = false;
+            }else if(type === 'zone'){
+                $scope.showZoneEdit = false;
+            }else if(type === 'stationType'){
+                 $scope.showStationTypeEdit = false;
+            }
             $scope.errors = {};
         };
 
