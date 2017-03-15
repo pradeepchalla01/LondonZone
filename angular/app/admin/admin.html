@@ -1,11 +1,11 @@
 <div class="adminPage" ng-if="showAdmin">
     <uib-tabset  active="active">
         <uib-tab index="0" heading="Stations" select="stationTab()">
-            <h3 class="text-left home-header" ng-show="!showStationEdit">Search London Tube Station Zone</h3>
-            <div class="station-letters-div station-letters-admin col-xs-12" ng-show="!showStationEdit">
+            <h3 class="text-left home-header" ng-show="!showEdit">Search London Tube Station Zone</h3>
+            <div class="station-letters-div station-letters-admin col-xs-12" ng-show="!showEdit">
                 <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)" ng-class="{'selectedLetter': selectedLetter === alphabet}">{{alphabet}} <span class="letter-distance" >|</span> </span>
             </div>
-            <div class="col-xs-12 col-sm-8 search-div search-admin" ng-show="!showStationEdit">
+            <div class="col-xs-12 col-sm-8 search-div search-admin" ng-show="!showEdit">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
                     <span class="input-group-btn">
@@ -13,7 +13,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayStationDetails && !showStationEdit">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && !showEdit">
                 <div class="success-text" ng-show="stationDeactivated">Station Deactivated Successfully</div>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station')" >Add New Station</button>
                 <table class="table table-striped">
@@ -51,10 +51,10 @@
                 </div>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station')" >Add New Station</button>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayStationDetails && !zoneDetails.length">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && !zoneDetails.length">
                 <h3 class="no-results text-center">No Results Found</h3>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-hide="showStationEdit">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!showEdit && !displayViewDetails">
                 <div>
                     <span class="station-details pull-left">Station Details</span>
                     <span class="pull-right">
@@ -93,10 +93,12 @@
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station', displayZone)" >Edit Station</button>
+                <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station', displayZone)">Edit Station</button>
+                <!--<button class="btn btn-info pull-right" type="button" style="margin-bottom: 10px;" ng-click="showMap = !showMap"><span ng-show="!showMap">View In Map</span><span ng-show="showMap">Hide Map</span></button>-->
+                <div id="map"></div>
             </div>
       
-            <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showStationEdit">
+            <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">
                 <h3>Edit Station</h3>
                 <div class="form-horizontal station-edit-form">
                     <div class="form-group">
@@ -174,7 +176,7 @@
             </div>
         </uib-tab>
         <uib-tab index="1" heading="Zones" select="zoneTab()">
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayZoneDetails && !showZoneEdit" style="margin-top: 20px;">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!showEdit" style="margin-top: 20px;">
                 <div class="success-text" ng-show="stationDeactivated">Station Deactivated Successfully</div>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('zone')" >Add Zone</button>
                 <table class="table">
@@ -203,7 +205,7 @@
                 </table>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('zone')" >Add Zone</button>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showZoneEdit">
+            <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">
                 <h3>Edit Station</h3>
                 <div class="form-horizontal station-edit-form">
                     <div class="form-group">
@@ -228,7 +230,7 @@
             </div>
         </uib-tab>
         <uib-tab index="2" heading="Station Types" select="stationTypesTab()">
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayStationTypeDetails && !showStationTypeEdit" style="margin-top: 20px;">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!showStationTypeEdit" style="margin-top: 20px;">
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('stationType')" >Add Station Type</button>
                 <table class="table table-striped">
                     <thead>
@@ -256,7 +258,7 @@
                 </table>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('stationType')" >Add Station Type</button>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showStationTypeEdit">
+            <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">
                 <h3>Edit Station</h3>
                 <div class="form-horizontal station-edit-form">
                     <div class="form-group">

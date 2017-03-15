@@ -10,21 +10,17 @@
         $scope.zoneDetails = $scope.totalZoneDetails;
         $scope.zoneList = zoneList;
         $scope.stationTypes = stationTypes;
-        $scope.displayStationDetails = true;
-        $scope.displayZoneDetails = false;
-        $scope.displayStationTypeDetails = false;
-        $scope.showStationEdit = false;
-        $scope.showZoneEdit = false;
-        $scope.showStationTypeEdit = false;
+        $scope.showEdit = false;
+        $scope.displayViewDetails = true;
         $scope.errors = {};
         $scope.searchPostCode = {postCode: null};
         $scope.showAdmin = false;
+        $scope.showMap = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         $scope.selectedLetter = 'A';
         $scope.curPage = 0;
         $scope.pageSize = 10;
         $scope.pagination = true;
-
         angular.element(function () {
             var password = prompt("Enter Password : ", "Please Enter Admin Password");
             if (password === CONSTANTS.AdminPassword) {
@@ -35,7 +31,7 @@
         $scope.getZoneDetails = function (letter) {
             $scope.curPage = 0;
             $scope.zoneDetails = [];
-            $scope.displayStationDetails = true;
+            $scope.displayViewDetails = true;
             $scope.stationDeactivated = false;
             $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function (zone) {
@@ -67,31 +63,34 @@
 
         $scope.dispalyDetails = function (details) {
             $scope.displayZone = details;
-            $scope.displayStationDetails = false;
+            $scope.displayViewDetails = false;
+            initMap($scope.displayZone);
         };
+        function initMap(displayZone) {
+            var uluru = {lat: displayZone.latitude, lng: displayZone.longitude};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
 
         $scope.stationTab = function(){
-            $scope.showZoneEdit = false;
-            $scope.showStationTypeEdit = false;
-            $scope.displayZoneDetails = true;
-            $scope.displayStationDetails = true;
-            $scope.displayStationTypeDetails = true;
+            $scope.showEdit = false;
+            $scope.displayViewDetails = true;
         }
 
         $scope.zoneTab = function(){
-            $scope.displayZoneDetails = true;
-            $scope.displayStationDetails = true;
-            $scope.displayStationTypeDetails = true;
-            $scope.showStationEdit = false;
-            $scope.showStationTypeEdit = false;
+            $scope.displayViewDetails = true;
+            $scope.showEdit = false;
         }
 
         $scope.stationTypesTab = function(){
-            $scope.displayZoneDetails = true;
-            $scope.displayStationDetails = true;
-            $scope.displayStationTypeDetails = true;
-            $scope.showZoneEdit = false;
-            $scope.showStationEdit = false;
+            $scope.displayViewDetails = true;
+            $scope.showEdit = false;
         }
 
         $scope.diactivateZone = function (details, index) {
@@ -105,12 +104,15 @@
         };
 
         $scope.showAllZones = function () {
-            $scope.displayStationDetails = true;
+            $scope.displayViewDetails = true;
+            $scope.showEdit = false;
+            $scope.showMap = false;
+            $scope.displayZone = {};
         };
 
         $scope.editDetails = function (type, details) {
             if (type === 'station') {
-                $scope.showStationEdit = true;
+                $scope.showEdit = true;
                 if (details) {
                     $scope.addStation = false;
                     var stationDetails = angular.copy(details);
@@ -133,10 +135,10 @@
                     };
                 }
             }else if(type === 'zone'){
-                $scope.showZoneEdit = true;
+                $scope.showEdit = true;
                 $scope.stationDetails = details;
             }else if(type === 'stationType'){
-                $scope.showStationTypeEdit = true;
+                $scope.showEdit = true;
                 $scope.stationDetails = details;
             }
         };
@@ -158,9 +160,9 @@
             });
             if (angular.equals({}, $scope.errors.stationDetails)) {
                 if (type === 'station') {
-                    $scope.showStationEdit = false;
-                    $scope.stationDetails.stationTypeId = $scope.stationDetails.stationType.id
-                    $scope.stationDetails.zoneId = $scope.stationDetails.zone.id
+                    $scope.showEdit = false;
+                    $scope.stationDetails.stationTypeId = $scope.stationDetails.stationType.id;
+                    $scope.stationDetails.zoneId = $scope.stationDetails.zone.id;
                     $scope.stationDetails.latitude = parseFloat($scope.stationDetails.latitude);
                     $scope.stationDetails.longitude = parseFloat($scope.stationDetails.longitude);
                     delete $scope.stationDetails.stationType;
@@ -174,12 +176,12 @@
                         }
                     });
                 } else if (type === 'zone') {
-                    $scope.showZoneEdit = false;
+                    $scope.showEdit = false;
                     QueryService.query('POST', 'saveOrEditZone', null, $scope.stationDetails).then(function (result) {
                         console.log(result);
                     });
                 } else if (type === 'stationType') {
-                    $scope.showStationTypeEdit = false;
+                    $scope.showEdit = false;
                     QueryService.query('POST', 'saveOrEditStationType', null, $scope.stationDetails).then(function (result) {
                         console.log(result);
                     });
@@ -188,13 +190,7 @@
         };
 
         $scope.cancelEdit = function (type) {
-            if(type === 'station'){
-                $scope.showStationEdit = false;
-            }else if(type === 'zone'){
-                $scope.showZoneEdit = false;
-            }else if(type === 'stationType'){
-                 $scope.showStationTypeEdit = false;
-            }
+            $scope.showEdit = false;
             $scope.errors = {};
         };
 

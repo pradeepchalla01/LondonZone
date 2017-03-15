@@ -16,7 +16,7 @@
         $scope.zoneDetails = [];
         $scope.selectedLetter = 'A';
         $scope.pagination = true;
-        
+        $scope.showMap = false;
         //QueryService.query('GET', 'components/services/data/data.json').then(function(trainDetails){
         $scope.getZoneDetails = function(letter){
             $scope.curPage = 0;
@@ -41,6 +41,15 @@
         $scope.dispalyDetails = function(details){
             $scope.displayviewDetails = false;
             $scope.displayZone = details;
+            var uluru = {lat: $scope.displayZone.latitude, lng: $scope.displayZone.longitude};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
         };
 
         $scope.editDetails = function(details, index){
