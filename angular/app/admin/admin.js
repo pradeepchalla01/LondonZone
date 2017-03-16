@@ -64,7 +64,9 @@
         $scope.dispalyDetails = function (details) {
             $scope.displayZone = details;
             $scope.displayViewDetails = false;
-            initMap($scope.displayZone);
+            $timeout(function(){            	
+            	initMap($scope.displayZone);
+            }, 100);
         };
         function initMap(displayZone) {
             var uluru = {lat: displayZone.latitude, lng: displayZone.longitude};

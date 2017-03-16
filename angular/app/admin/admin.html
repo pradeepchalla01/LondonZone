@@ -54,7 +54,7 @@
             <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && !zoneDetails.length">
                 <h3 class="no-results text-center">No Results Found</h3>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!showEdit && !displayViewDetails">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!showEdit && !displayViewDetails">
                 <div>
                     <span class="station-details pull-left">Station Details</span>
                     <span class="pull-right">

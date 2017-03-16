@@ -6,7 +6,7 @@
         .controller('homeController', homeController)
         .filter('pagination', pagination);
 
-	function homeController($scope, QueryService){
+	function homeController($scope, QueryService, $timeout){
         $scope.displayviewDetails = true;
         $scope.showEdit = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -41,15 +41,17 @@
         $scope.dispalyDetails = function(details){
             $scope.displayviewDetails = false;
             $scope.displayZone = details;
-            var uluru = {lat: $scope.displayZone.latitude, lng: $scope.displayZone.longitude};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
+            $timeout(function(){
+            	var uluru = {lat: $scope.displayZone.latitude, lng: $scope.displayZone.longitude};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }, 100);
         };
 
         $scope.editDetails = function(details, index){
