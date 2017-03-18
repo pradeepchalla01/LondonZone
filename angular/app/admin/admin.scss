@@ -6,6 +6,29 @@
 			}
 		}
 	}
+	.social{
+		padding-left: 10px;
+		.twitter{
+			background-color: #1DA1F3;
+			border-color: #1DA1F3;
+			font-size: 11px;
+    		letter-spacing: 0.05em;
+			margin-right: 15px;
+			img{
+				margin-right: 4px;
+				margin-bottom: 2px;
+			}
+		}
+		.fb{
+			background-color: #365899;
+			border-color: #365899;
+			font-size: 11px;
+    		letter-spacing: 0.05em;
+			img{
+				margin-right: 5px;
+			}
+		}
+	}
 	.pagination-div {
 		display: inline-block;
 		ul {
