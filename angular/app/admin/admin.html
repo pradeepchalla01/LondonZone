@@ -8,18 +8,18 @@
                 <button class="btn btn-info btn-xs fb" type="button"><span><img src="../images/like-icon.png" width="16px"></span>Like</button>
                 <button class="btn btn-info btn-xs fb" type="button">Share</button>
             </div>
-            <div class="station-letters-div station-letters-admin col-xs-12" ng-show="!showEdit">
+            <div class="station-letters-div station-letters-admin col-xs-12" ng-show="!showEdit && !viewMap">
                 <span class="letter" ng-repeat="alphabet in alphabets" ng-click="getZoneDetails(alphabet)" ng-class="{'selectedLetter': selectedLetter === alphabet}">{{alphabet}} <span class="letter-distance" >|</span> </span>
             </div>
             <div class="col-xs-12 col-sm-8 search-div search-admin" ng-show="!showEdit">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
                     <span class="input-group-btn">
-                        <button class="btn btn-info" type="button" ng-click="findZone()">Find Zone</button>
+                        <button class="btn btn-info" type="button" ng-click="findZone(searchPostCode.postCode)">Find Zone</button>
                     </span>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && !showEdit">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && !showEdit && !viewMap && !displaySearchStation">
                 <div class="success-text" ng-show="stationDeactivated">Station Deactivated Successfully</div>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station')" >Add New Station</button>
                 <table class="table table-striped">
@@ -57,10 +57,44 @@
                 </div>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station')" >Add New Station</button>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && !zoneDetails.length">
+
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation">
+                <div class="success-text" ng-show="stationDeactivated">Station Deactivated Successfully</div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th> Station Name </th>
+                            <th> Station Zone </th>
+                            <th style="text-align:center;" width="25%" class="action"> Action </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="zone in matchedStations">
+                            <td>{{zone.name}}</td>
+                            <td>{{zone.zone}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="zone.action">Action <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li ng-click ="editDetails('station', zone)"><a href="">Edit</a></li>
+                                        <li ng-click ="dispalyDetails(zone)"><a href="">View Details</a></li>
+                                        <li><a href="" ng-click ="diactivateZone(zone, $index)">Deactivate</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
                 <h3 class="no-results text-center">No Results Found</h3>
             </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!showEdit && !displayViewDetails">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation && !matchedStations.length">
+                <h3 class="no-results text-center">No Results Found</h3>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!showEdit && !displayViewDetails && !viewMap && !displaySearchStation">
                 <div>
                     <span class="station-details pull-left">Station Details</span>
                     <span class="pull-right">
@@ -103,7 +137,10 @@
                 <!--<button class="btn btn-info pull-right" type="button" style="margin-bottom: 10px;" ng-click="showMap = !showMap"><span ng-show="!showMap">View In Map</span><span ng-show="showMap">Hide Map</span></button>-->
                 <div id="map"></div>
             </div>
-      
+            <div class="col-xs-12" style="padding-bottom: 10px;">
+                <button class="btn btn-info" type="button" ng-click="viewStationList()" ng-if="viewMap">View Station List</button>
+            </div>
+            <div id="map" ng-if="viewMap"></div>
             <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">
                 <h3>Edit Station</h3>
                 <div class="form-horizontal station-edit-form">

@@ -41,7 +41,7 @@
             });
         };
 
-        $scope.findZone = function () {
+        $scope.findZone = function (postCode) {
             /***
              * API to check whether the entered values is valid poscode or not
              * If it is a valid postcode will return status with 200 and data in result
@@ -50,12 +50,47 @@
             $scope.searchPostCode.postCode = ($scope.searchPostCode.postCode).replace(/\s/g,'');
             $http.get('http://api.postcodes.io/postcodes/' + $scope.searchPostCode.postCode).then(function (result) {
                 if(result.data.status ===  200){
+                    $scope.searchPostCode.postCode = '';
                     var postCodeDetails = result.data.result;
+                    $scope.displayMap = result.data.result;
+                    $scope.viewMap = true;
+                    $timeout(function(){            	
+                        initMap($scope.displayMap);
+                    }, 100);
                     console.log(postCodeDetails);
                 }
             }, function (error) {
+                if(postCode){
+                    $scope.matchedStations = [];
+                    $scope.displayViewDetails = false;
+                    $scope.displaySearchStation = false;
+                    angular.forEach($scope.zoneDetails, function(value){
+                        var required = ['name', 'postCode'];
+                        required.forEach(function(key){
+                            if(value && value[key] && value[key].toLowerCase().match(postCode.toLowerCase())){
+                                $scope.matchedStations.push(value);
+                            }
+                        })
+                    })
+                    console.log($scope.matchedStations);
+                    if($scope.matchedStations.length && $scope.matchedStations.length === 1){
+                        $scope.displayZone = $scope.matchedStations[0];
+                        $scope.displaySearchStation = false;
+                        $timeout(function(){            	
+                            initMap($scope.displayZone);
+                        }, 100);
+                    $scope.searchPostCode.postCode = '';
+                    }else if($scope.matchedStations.length > 1){
+                        $scope.displaySearchStation = true;
+                        $scope.searchPostCode.postCode = '';
+                    }else{
+                        $scope.displaySearchStation = true;
+                        $scope.searchPostCode.postCode = '';
+                    }
+                }
                 //TODO: Need to implement search for other Stations
                 console.log(error);
+
             });
         };
 
@@ -64,6 +99,7 @@
         $scope.dispalyDetails = function (details) {
             $scope.displayZone = details;
             $scope.displayViewDetails = false;
+            $scope.displaySearchStation = false;
             $timeout(function(){            	
             	initMap($scope.displayZone);
             }, 100);
@@ -93,6 +129,12 @@
         $scope.stationTypesTab = function(){
             $scope.displayViewDetails = true;
             $scope.showEdit = false;
+        }
+
+        $scope.viewStationList = function(){
+            $scope.displayViewDetails = true;
+            $scope.viewMap = false;
+
         }
 
         $scope.diactivateZone = function (details, index) {

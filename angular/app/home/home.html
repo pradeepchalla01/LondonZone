@@ -13,11 +13,11 @@
         <div class="input-group">
             <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
             <span class="input-group-btn">
-                <button class="btn btn-info" type="button">Find Zone</button>
+                <button class="btn btn-info" type="button" ng-click="findZone(searchPostCode.postCode)">Find Zone</button>
             </span>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && zoneDetails.length">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && zoneDetails.length && !viewMap && !displaySearchStation">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -27,7 +27,32 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | filter:searchPostCode.postCode| limitTo: 10">
+                <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | limitTo: 10">
+                    <td>{{zone.name}}</td>
+                    <td>{{zone.zone}}</td>
+                    <td class="text-center"><button class="btn btn-info" type="button" ng-click="dispalyDetails(zone)" >View Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination-div col-xs-12 col-sm-12 col-lg-7 pull-right" ng-show="zoneDetails.length && displayviewDetails">
+            <ul>
+                <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
+                <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
+                <li><button type="button" class="btn btn-primary" ng-disabled="curPage >= zoneDetails.length/pageSize - 1" ng-click="curPage = curPage+1">NEXT > </button></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> Station Name </th>
+                    <th> Station Zone </th>
+                    <th width="25%" class="action" style="text-align:center;"> Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="zone in matchedStations">
                     <td>{{zone.name}}</td>
                     <td>{{zone.zone}}</td>
                     <td class="text-center"><button class="btn btn-info" type="button" ng-click="dispalyDetails(zone)" >View Details</button></td>
@@ -38,7 +63,10 @@
     <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
         <h3 class="no-results text-center">No Results Found</h3>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!displayviewDetails">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation && !matchedStations.length">
+        <h3 class="no-results text-center">No Results Found</h3>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!displayviewDetails && !displaySearchStation">
         <div>
             <span class="station-details pull-left">Station Details</span>
             <span class="pull-right">
@@ -81,11 +109,8 @@
         <!--<button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="showMap = !showMap"><span ng-show="!showMap">View In Map</span><span ng-show="showMap">Hide Map</span></button>-->
         <div id="map"></div>
     </div>
-    <div class="pagination-div col-xs-12 col-sm-12 col-lg-7 pull-right" ng-show="zoneDetails.length && displayviewDetails">
-        <ul>
-            <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
-            <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
-            <li><button type="button" class="btn btn-primary" ng-disabled="curPage >= zoneDetails.length/pageSize - 1" ng-click="curPage = curPage+1">NEXT > </button></li>
-        </ul>
+    <div class="col-xs-12" style="padding-bottom: 10px;">
+        <button class="btn btn-info" type="button" ng-click="viewStationList()" ng-if="viewMap">View Station List</button>
     </div>
+    <div id="map" ng-if="viewMap"></div>
 </div>
