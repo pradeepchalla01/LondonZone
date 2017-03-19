@@ -63,72 +63,65 @@
         }
 
         $scope.findZone = function (postCode) {
-            /***
-             * API to check whether the entered values is valid poscode or not
-             * If it is a valid postcode will return status with 200 and data in result
-             * Otherwise we will get an exception 
-             * */
-            $scope.searchPostCode.postCode = ($scope.searchPostCode.postCode).replace(/\s/g,'');
-            $http.get('http://api.postcodes.io/postcodes/' + $scope.searchPostCode.postCode).then(function (result) {
-                $scope.searchPostCode.postCode = '';
-                if(result.data.status ===  200){
-                    var postCodeDetails = result.data.result;
-                    $scope.displayMap = result.data.result;
-                    $scope.viewMap = true;
-                    $timeout(function(){            	
-                        var uluru = {lat: $scope.displayZone.latitude, lng: $scope.displayZone.longitude};
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 15,
-                            center: uluru
-                        });
-                        var marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map
-                        });
-                    }, 100);
-                    console.log(postCodeDetails);
-                }
-            }, function (error) {
-                if(postCode){
-                    $scope.matchedStations = [];
-                    $scope.displayViewDetails = false;
-                    $scope.displaySearchStation = false;
-                    angular.forEach($scope.zoneDetails, function(value){
-                        var required = ['name', 'postCode'];
-                        required.forEach(function(key){
-                            if(value && value[key] && value[key].toLowerCase().match(postCode.toLowerCase())){
-                                $scope.matchedStations.push(value);
-                            }
-                        })
-                    })
-                    console.log($scope.matchedStations);
-                    if($scope.matchedStations.length && $scope.matchedStations.length === 1){
-                        $scope.displayZone = $scope.matchedStations[0];
-                        $scope.displaySearchStation = false;
-                        $timeout(function(){            	
-                            var uluru = {lat: $scope.displayZone.latitude, lng: $scope.displayZone.longitude};
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 15,
-                                center: uluru
-                            });
-                            var marker = new google.maps.Marker({
-                                position: uluru,
-                                map: map
-                            });
-                        }, 100);
-                        $scope.searchPostCode.postCode = '';
-                    }else if($scope.matchedStations.length > 1){
-                        $scope.searchPostCode.postCode = '';
-                        $scope.displaySearchStation = true;
-                    }else{
-                        $scope.displaySearchStation = true;
-                        $scope.searchPostCode.postCode = '';
-                    }
-                }
-                //TODO: Need to implement search for other Stations
-                console.log(error);
-
-            });
+        	if(postCode){
+        		$scope.matchedStations = [];
+        		angular.forEach($scope.totalZoneDetails, function(value){
+        			var required = ['name', 'postCode'];
+        			angular.forEach(required, function(key){
+        				if(value && value[key] && value[key].toLowerCase().match(postCode.toLowerCase())){
+        					$scope.matchedStations.push(value);
+        				}
+        			});
+        		});
+        		if($scope.matchedStations.length && $scope.matchedStations.length === 1){
+            		$scope.displayviewDetails = false;
+            		$scope.displaySearchStation = false;
+            		$scope.displayZone = $scope.matchedStations[0];
+        			$timeout(function(){
+        				var uluru = {lat: $scope.displayZone.latitude, lng: $scope.displayZone.longitude};
+        				var map = new google.maps.Map(document.getElementById('map'), {
+        					zoom: 15,
+        					center: uluru
+        				});
+        				var marker = new google.maps.Marker({
+        					position: uluru,
+        					map: map
+        				});
+        			}, 100);
+        			$scope.searchPostCode.postCode = '';
+        		}else if($scope.matchedStations.length > 1){
+        			$scope.searchPostCode.postCode = '';
+        			$scope.displaySearchStation = true;
+        		}else{
+        			/***
+        			 * API to check whether the entered values is valid postcode or not
+        			 * If it is a valid postcode will return status with 200 and data in result
+        			 * Otherwise we will get an exception 
+        			 * */
+        			$scope.searchPostCode.postCode = ($scope.searchPostCode.postCode).replace(/\s/g,'');
+        			$http.get('http://api.postcodes.io/postcodes/' + $scope.searchPostCode.postCode).then(function (result) {
+        				$scope.searchPostCode.postCode = '';
+        				if(result.data.status ===  200){
+        					$scope.displayMap = result.data.result;
+        					$scope.viewMap = true;
+        					$timeout(function(){            	
+        						var uluru = {lat: $scope.displayMap.latitude, lng: $scope.displayMap.longitude};
+        						var map = new google.maps.Map(document.getElementById('googleMap'), {
+        							zoom: 15,
+        							center: uluru
+        						});
+        						var marker = new google.maps.Marker({
+        							position: uluru,
+        							map: map
+        						});
+        					}, 1000);
+        				}
+        			}, function (error) {
+        				$scope.displaySearchStation = true;
+        				$scope.searchPostCode.postCode = '';
+        			});
+        		}
+        	}
         };
 
         $scope.editDetails = function(details, index){
