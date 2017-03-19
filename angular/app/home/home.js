@@ -58,7 +58,7 @@
         };
 
         $scope.viewStationList = function(){
-            $scope.displayViewDetails = true;
+            $scope.displayviewDetails = true;
             $scope.viewMap = false;
         }
 
