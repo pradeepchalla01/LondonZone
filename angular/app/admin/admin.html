@@ -60,7 +60,7 @@
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station')" >Add New Station</button>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation && matchedStations.length">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation && matchedStations.length && !showEdit">
                 <div class="success-text" ng-show="stationDeactivated">Station Deactivated Successfully</div>
                 <table class="table table-striped">
                     <thead>
