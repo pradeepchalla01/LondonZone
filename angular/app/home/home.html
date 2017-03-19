@@ -23,6 +23,7 @@
                 <tr>
                     <th> Station Name </th>
                     <th> Station Zone </th>
+                    <th> Station Postcode </th>
                     <th width="25%" class="action" style="text-align:center;"> Action </th>
                 </tr>
             </thead>
@@ -30,6 +31,7 @@
                 <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | limitTo: 10">
                     <td>{{zone.name}}</td>
                     <td>{{zone.zone}}</td>
+                    <td>{{zone.postCode}}</td>
                     <td class="text-center"><button class="btn btn-info" type="button" ng-click="dispalyDetails(zone)" >View Details</button></td>
                 </tr>
             </tbody>
@@ -48,6 +50,7 @@
                 <tr>
                     <th> Station Name </th>
                     <th> Station Zone </th>
+                    <th> Station Postcode </th>
                     <th width="25%" class="action" style="text-align:center;"> Action </th>
                 </tr>
             </thead>
@@ -55,6 +58,7 @@
                 <tr ng-repeat="zone in matchedStations">
                     <td>{{zone.name}}</td>
                     <td>{{zone.zone}}</td>
+                    <td>{{zone.postCode}}</td>
                     <td class="text-center"><button class="btn btn-info" type="button" ng-click="dispalyDetails(zone)" >View Details</button></td>
                 </tr>
             </tbody>
