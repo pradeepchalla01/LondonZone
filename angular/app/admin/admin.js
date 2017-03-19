@@ -33,6 +33,7 @@
             $scope.zoneDetails = [];
             $scope.displayViewDetails = true;
             $scope.stationDeactivated = false;
+            $scope.displaySearchStation = false;
             $scope.viewMap = false;
             $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function (zone) {

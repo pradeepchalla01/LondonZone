@@ -55,7 +55,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="zone in matchedStations">
+                <tr ng-repeat="zone in matchedStations track by $index">
                     <td>{{zone.name}}</td>
                     <td>{{zone.zone}}</td>
                     <td>{{zone.postCode}}</td>
