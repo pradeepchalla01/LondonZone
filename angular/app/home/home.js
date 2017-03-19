@@ -25,6 +25,7 @@
             $scope.zoneDetails = [];
             $scope.displayViewDetails = true;
             $scope.displaySearchStation = false;
+            $scope.viewMap = false;
             $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function(zone) {
                 if(zone.name.startsWith(letter)){
@@ -59,6 +60,7 @@
         };
 
         $scope.viewStationList = function(){
+        	$scope.getZoneDetails('A');
             $scope.displayViewDetails = true;
             $scope.viewMap = false;
         }
@@ -106,6 +108,9 @@
         				if(result.data.status ===  200){
         					$scope.displayMap = result.data.result;
         					$scope.viewMap = true;
+        					$scope.displaySearchStation = true;
+        					$scope.displayViewDetails = true;
+        					$scope.displayZone = null;
         					$timeout(function(){            	
         						var uluru = {lat: $scope.displayMap.latitude, lng: $scope.displayMap.longitude};
         						var map = new google.maps.Map(document.getElementById('googleMap'), {

@@ -27,6 +27,7 @@
                         <tr>
                             <th> Station Name </th>
                             <th> Station Zone </th>
+                            <th> Station Postcode </th>
                             <th style="text-align:center;" width="25%" class="action"> Action </th>
                         </tr>
                     </thead>
@@ -34,6 +35,7 @@
                         <tr ng-repeat="zone in zoneDetails | pagination: curPage * pageSize | limitTo: 10">
                             <td>{{zone.name}}</td>
                             <td>{{zone.zone}}</td>
+                            <td>{{zone.postCode}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="zone.action">Action <span class="caret"></span>
@@ -58,13 +60,14 @@
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station')" >Add New Station</button>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation && matchedStations.length">
                 <div class="success-text" ng-show="stationDeactivated">Station Deactivated Successfully</div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th> Station Name </th>
                             <th> Station Zone </th>
+                            <th> Station Postcode </th>
                             <th style="text-align:center;" width="25%" class="action"> Action </th>
                         </tr>
                     </thead>
@@ -72,6 +75,7 @@
                         <tr ng-repeat="zone in matchedStations">
                             <td>{{zone.name}}</td>
                             <td>{{zone.zone}}</td>
+                            <td>{{zone.postCode}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="zone.action">Action <span class="caret"></span>
@@ -88,10 +92,7 @@
                 </table>
             </div>
             
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
-                <h3 class="no-results text-center">No Results Found</h3>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation && !matchedStations.length">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!viewMap && ((displayViewDetails && !zoneDetails.length) || (displaySearchStation && !matchedStations.length))">
                 <h3 class="no-results text-center">No Results Found</h3>
             </div>
             <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!showEdit && !displayViewDetails && !viewMap && !displaySearchStation">
@@ -134,15 +135,14 @@
                     </tbody>
                 </table>
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('station', displayZone)">Edit Station</button>
-                <!--<button class="btn btn-info pull-right" type="button" style="margin-bottom: 10px;" ng-click="showMap = !showMap"><span ng-show="!showMap">View In Map</span><span ng-show="showMap">Hide Map</span></button>-->
                 <div id="map"></div>
             </div>
             <div class="col-xs-12" style="padding-bottom: 10px;">
                 <button class="btn btn-info" type="button" ng-click="viewStationList()" ng-if="viewMap">View Station List</button>
             </div>
-            <div id="map" ng-if="viewMap"></div>
+            <div id="googleMap" ng-if="viewMap"></div>
             <div class="col-xs-12 col-sm-12 col-lg-8 station-edit" ng-show="showEdit">
-                <h3>Edit Station</h3>
+                <h3><span ng-show="stationDetails.name">Edit</span><span ng-show="!stationDetails.name">Add</span> Station</h3>
                 <div class="form-horizontal station-edit-form">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Name:</label>
@@ -154,7 +154,6 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Zone:</label>
                         <div class="col-md-8 col-sm-9">
-                            <!--<input id="zone" name="zone" type="text" ng-model="stationDetails.zone" placeholder="Zone" class="form-control" ng-focus="hideErrorMsg('zone','stationDetails')">-->
                             <div class="btn-group">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-model="stationDetails.zone">{{stationDetails.zone.name}} <span class="caret"></span>
                                 </button>
@@ -273,7 +272,7 @@
             </div>
         </uib-tab>
         <uib-tab index="2" heading="Station Types" select="stationTypesTab()">
-            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!showStationTypeEdit" style="margin-top: 20px;">
+            <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="!showEdit" style="margin-top: 20px;">
                 <button class="btn btn-info" type="button" style="margin-bottom: 10px;" ng-click="editDetails('stationType')" >Add Station Type</button>
                 <table class="table table-striped">
                     <thead>
