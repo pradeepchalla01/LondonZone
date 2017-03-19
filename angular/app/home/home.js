@@ -24,6 +24,7 @@
             $scope.curPage = 0;
             $scope.zoneDetails = [];
             $scope.displayViewDetails = true;
+            $scope.displaySearchStation = false;
             $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function(zone) {
                 if(zone.name.startsWith(letter)){
@@ -64,6 +65,7 @@
 
         $scope.findZone = function (postCode) {
         	if(postCode){
+        		$scope.selectedLetter = '';
         		$scope.matchedStations = [];
         		angular.forEach($scope.totalZoneDetails, function(value){
         			var required = ['name', 'postCode'];
