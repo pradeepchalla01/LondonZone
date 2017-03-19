@@ -17,7 +17,7 @@
             </span>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && zoneDetails.length && !viewMap && !displaySearchStation">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && zoneDetails.length && !viewMap && !displaySearchStation">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -34,7 +34,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="pagination-div col-xs-12 col-sm-12 col-lg-7 pull-right" ng-show="zoneDetails.length && displayviewDetails">
+        <div class="pagination-div col-xs-12 col-sm-12 col-lg-7 pull-right" ng-show="zoneDetails.length && displayViewDetails">
             <ul>
                 <li><button type="button" class ="btn btn-primary" ng-disabled="curPage == 0" ng-click="curPage=curPage-1">< PREV</button></li>
                 <li><span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
@@ -60,13 +60,13 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayviewDetails && !zoneDetails.length">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && !zoneDetails.length">
         <h3 class="no-results text-center">No Results Found</h3>
     </div>
     <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displaySearchStation && !matchedStations.length">
         <h3 class="no-results text-center">No Results Found</h3>
     </div>
-    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!displayviewDetails && !displaySearchStation">
+    <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-if="!displayViewDetails && !displaySearchStation">
         <div>
             <span class="station-details pull-left">Station Details</span>
             <span class="pull-right">

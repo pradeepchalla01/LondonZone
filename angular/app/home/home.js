@@ -7,7 +7,7 @@
         .filter('pagination', pagination);
 
 	function homeController($scope, QueryService, $timeout, $http){
-        $scope.displayviewDetails = true;
+        $scope.displayViewDetails = true;
         $scope.showEdit = false;
         $scope.alphabets = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
         // pagination
@@ -23,7 +23,7 @@
         $scope.getZoneDetails = function(letter){
             $scope.curPage = 0;
             $scope.zoneDetails = [];
-            $scope.displayviewDetails = true;
+            $scope.displayViewDetails = true;
             $scope.selectedLetter = letter;
             angular.forEach($scope.totalZoneDetails, function(zone) {
                 if(zone.name.startsWith(letter)){
@@ -41,7 +41,7 @@
         };
         
         $scope.dispalyDetails = function(details){
-            $scope.displayviewDetails = false;
+            $scope.displayViewDetails = false;
             $scope.displaySearchStation = false;
             $scope.displayZone = details;
             $timeout(function(){
@@ -58,7 +58,7 @@
         };
 
         $scope.viewStationList = function(){
-            $scope.displayviewDetails = true;
+            $scope.displayViewDetails = true;
             $scope.viewMap = false;
         }
 
@@ -74,7 +74,7 @@
         			});
         		});
         		if($scope.matchedStations.length && $scope.matchedStations.length === 1){
-            		$scope.displayviewDetails = false;
+            		$scope.displayViewDetails = false;
             		$scope.displaySearchStation = false;
             		$scope.displayZone = $scope.matchedStations[0];
         			$timeout(function(){
@@ -141,7 +141,7 @@
         }
 
         $scope.showAllZones = function(){
-            $scope.displayviewDetails = true;
+            $scope.displayViewDetails = true;
         };
     }
 
