@@ -23,6 +23,12 @@
 		<![endif]-->
 		<!-- or, set /favicon.ico for IE10 win -->
 		<meta name="msapplication-TileColor" content="#f01d4f">
+		
+		<meta property="og:url"           content="http://www.londonzonefinder.com" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="Your Website Title" />
+		<meta property="og:description"   content="Your description" />
+		<meta property="og:image"         content="http://westlondonzone.org//wp-content/uploads/2016/03/wlz-final-266px.png" />
 
 		<!-- CSS -->
 		<!-- build:css css/style.min.css -->
@@ -34,6 +40,15 @@
 	</head>
 
 	<body class="main-wrapper">
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		    var js, fjs = d.getElementsByTagName(s)[0];
+		    if (d.getElementById(id)) return;
+		    js = d.createElement(s); js.id = id;
+		    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+		    fjs.parentNode.insertBefore(js, fjs);
+		  }(document, 'script', 'facebook-jssdk'));
+		</script>
 		<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container-fluid">
 		    <!-- london zone menu starts here-->
@@ -94,7 +109,7 @@
 	<!-- build:nonangularlibs js/nonangularlibs.js -->
 	<script type="text/javascript" src="js/nonangular/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="js/nonangular/bootstrap.min.js"></script>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDbuEElrfTQnev9VsPSBDu4E9AaWfCYzsE"></script>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBiBGOy_22poacDrWg-voKma9oEc43f-BU"></script>
 	<!-- endbuild -->
 
 	<!-- Non-angular libraries -->
