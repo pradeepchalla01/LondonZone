@@ -33,7 +33,7 @@
                 }
             });
         };
-        QueryService.query('GET', 'trainDetails').then(function(trainDetails){
+        QueryService.query('POST', 'trainDetails').then(function(trainDetails){
             $scope.totalZoneDetails = trainDetails.data;
             $scope.zoneDetails = $scope.totalZoneDetails;
             $scope.getZoneDetails('A');

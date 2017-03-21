@@ -34,17 +34,17 @@ public class ZoneController {
 		return "greeting";
 	}
 
-	@RequestMapping("/allZone")
+	@RequestMapping(value  = "/allZone", method = RequestMethod.POST)
 	public @ResponseBody List<Zone> getAllZone() {
 		return service.getAllZones();
 	}
 
-	@RequestMapping("/stationTypes")
+	@RequestMapping(value  = "/stationTypes", method = RequestMethod.POST)
 	public @ResponseBody List<TrainStationType> getAllStationType() {
 		return service.getAllStationType();
 	}
 
-	@RequestMapping("/trainDetails")
+	@RequestMapping(value  = "/trainDetails", method = RequestMethod.POST)
 	public @ResponseBody List<TrainDetail> getAllStation() {
 		return service.getTrainsDetail();
 	}

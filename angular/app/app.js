@@ -67,17 +67,17 @@
               controller: 'adminController',
               resolve:{
                 trainDetails:  function(QueryService){
-                  return QueryService.query('GET', 'trainDetails').then(function(data){
+                  return QueryService.query('POST', 'trainDetails').then(function(data){
                       return data.data;
                   });
                 },
                 zoneList:  function(QueryService){
-                  return QueryService.query('GET', 'allZone').then(function(data){
+                  return QueryService.query('POST', 'allZone').then(function(data){
                       return data.data;
                   });
                 },
                 stationTypes:  function(QueryService){
-                  return QueryService.query('GET', 'stationTypes').then(function(data){
+                  return QueryService.query('POST', 'stationTypes').then(function(data){
                       return data.data;
                   });
                 }
