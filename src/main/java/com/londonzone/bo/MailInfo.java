@@ -2,25 +2,25 @@ package com.londonzone.bo;
 
 public class MailInfo {
 	
-	private String from;
-	private String to;
+	private String fromEmail;
+	private String toEmail;
 	private String body;
 	private String subject;
 
-	public String getFrom() {
-		return from;
+	public String getFromEmail() {
+		return fromEmail;
 	}
 
-	public void setFrom(String from) {
-		this.from = from;
+	public void setFromEmail(String from) {
+		this.fromEmail = from;
 	}
 
-	public String getTo() {
-		return to;
+	public String getToEmail() {
+		return toEmail;
 	}
 
-	public void setTo(String to) {
-		this.to = to;
+	public void setToEmail(String to) {
+		this.toEmail = to;
 	}
 
 	public String getBody() {

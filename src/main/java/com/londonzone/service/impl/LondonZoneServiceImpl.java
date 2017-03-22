@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.londonzone.bo.MailInfo;
 import com.londonzone.bo.TrainDetail;
 import com.londonzone.bo.TrainStationBo;
 import com.londonzone.bo.TrainStationTypeBo;
@@ -19,6 +20,7 @@ import com.londonzone.repositories.TrainStationRepository;
 import com.londonzone.repositories.TrainStationTypeRespository;
 import com.londonzone.repositories.ZoneRepository;
 import com.londonzone.services.LondonZoneService;
+import com.londonzone.services.MailService;
 
 @Service
 public class LondonZoneServiceImpl implements LondonZoneService {
@@ -34,6 +36,9 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 	
 	@Autowired
 	private ContactUsRepository contactUsRepository;
+
+	@Autowired
+	private MailService mailService;
 
 	@Autowired
 	public void setProductRepository(ZoneRepository zoneRepository) {
@@ -181,6 +186,15 @@ public class LondonZoneServiceImpl implements LondonZoneService {
 	@Override
 	public ContactUs saveContactUs(ContactUs contactUs){
 		contactUs = contactUsRepository.save(contactUs);
+		
+		MailInfo mailInfo = new MailInfo();
+		mailInfo.setFromEmail(contactUs.getEmail());
+		mailInfo.setToEmail("sudhirk1744@gmail.com");
+		mailInfo.setSubject("Question about LondonZone Finder");
+		String emailBody = contactUs.getName() + "<br>" + contactUs.getPhone() + "<br>" + contactUs.getQuestion();
+		mailInfo.setBody(emailBody);
+		mailService.sendEmail(mailInfo);
+		
 		return contactUs;
 	}
 }

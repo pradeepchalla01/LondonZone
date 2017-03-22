@@ -37,9 +37,9 @@ public class MailServiceImpl implements MailService{
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
  
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                mimeMessage.setFrom(mailInfo.getFrom());
+                mimeMessage.setFrom(mailInfo.getFromEmail());
                 mimeMessage.setRecipient(Message.RecipientType.TO,
-                        new InternetAddress(mailInfo.getTo()));
+                        new InternetAddress(mailInfo.getToEmail()));
                 mimeMessage.setText(mailInfo.getBody());
                 mimeMessage.setSubject(mailInfo.getSubject());
             }
