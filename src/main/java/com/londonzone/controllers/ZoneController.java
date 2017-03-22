@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.londonzone.bo.MailInfo;
 import com.londonzone.bo.TrainDetail;
 import com.londonzone.bo.TrainStationBo;
 import com.londonzone.bo.TrainStationTypeBo;
@@ -20,6 +21,7 @@ import com.londonzone.domain.TrainStation;
 import com.londonzone.domain.TrainStationType;
 import com.londonzone.domain.Zone;
 import com.londonzone.services.LondonZoneService;
+import com.londonzone.services.MailService;
 
 @Controller
 public class ZoneController {
@@ -27,6 +29,9 @@ public class ZoneController {
 	@Autowired
 	private LondonZoneService service;
 
+	@Autowired
+	MailService mailService;
+	
 	@RequestMapping("/greeting")
 	public String greeting(@RequestParam(value = "name", required = false, defaultValue = "World") String name,
 			Model model) {
@@ -82,6 +87,14 @@ public class ZoneController {
 	public @ResponseBody ContactUs saveContactUs(@RequestBody ContactUs contactUs) {
 		if(contactUs !=  null) {			
 			return service.saveContactUs(contactUs);
+		}
+		return null;
+	}
+	
+	@RequestMapping(value  = "/sendEmail", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody String sendEmail(@RequestBody MailInfo mailInfo) {
+		if(mailInfo !=  null) {			
+			return mailService.sendEmail(mailInfo);
 		}
 		return null;
 	}

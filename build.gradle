@@ -26,6 +26,10 @@ targetCompatibility = 1.8
 
 dependencies {
     compile group: 'postgresql', name: 'postgresql', version: '9.0-801.jdbc4'
+	compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+	compile group: 'javax.mail', name: 'javax.mail-api', version: '1.5.5'
+	// https://mvnrepository.com/artifact/org.springframework/spring-context-support
+	compile group: 'org.springframework', name: 'spring-context-support', version: '3.2.0.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     compile("org.springframework.boot:spring-boot-devtools")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
