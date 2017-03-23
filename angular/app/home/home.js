@@ -4,7 +4,8 @@
    angular
         .module('londonZones.home',[])
         .controller('homeController', homeController)
-        .filter('pagination', pagination);
+        .filter('pagination', pagination)
+		.directive('ngEnter', ngEnter);
 
 	function homeController($scope, QueryService, $timeout, $http){
         $scope.displayViewDetails = true;
@@ -69,6 +70,7 @@
         	if(postCode){
         		$scope.selectedLetter = '';
         		$scope.matchedStations = [];
+        		$scope.searchResultList=[];
         		angular.forEach($scope.totalZoneDetails, function(value){
         			var required = ['name', 'postCode'];
         			angular.forEach(required, function(key){
@@ -150,6 +152,37 @@
         $scope.showAllZones = function(){
             $scope.displayViewDetails = true;
         };
+        
+        $scope.search = function(e){
+            var searchStr = $scope.searchPostCode.postCode;
+            if (searchStr && searchStr.length > 2) {
+                if(e.keyCode !== 40 && e.keyCode !== 39 && e.keyCode !== 38 && e.keyCode !== 37 && e.keyCode != 13 && e.keyCode != 9){
+                    $scope.searchResultList = [];
+                    angular.forEach($scope.totalZoneDetails, function(value){
+            			var required = ['name', 'postCode'];
+            			angular.forEach(required, function(key){
+            				if(value && value[key] && value[key].toLowerCase().match(searchStr.toLowerCase())){
+            					$scope.searchResultList.push(value);
+            				}
+            			});
+            		});
+                    if($scope.searchResultList && $scope.searchResultList.length){
+                        angular.element('.company-results').removeClass('hide');
+                    }
+                }
+            }else{
+                $scope.searchResultList=[];
+            }
+        };
+        $scope.stationSearch = function(e){
+            if(e.keyCode == 9){
+                $scope.searchResultList=[];
+            }
+        }
+        $scope.showStation = function(searchResult){
+        	$scope.searchPostCode.postCode = searchResult;
+            $scope.searchResultList=[];
+        };
     }
 
     function pagination(){
@@ -157,5 +190,22 @@
             start = +start;
             return input.slice(start);
         };
+    };
+    
+    function ngEnter() {
+    	var linkFn = function(scope,element,attrs) {
+    		element.bind("keypress", function(event) {
+    			if(event.which === 13) {
+    				scope.$apply(function() {
+    					scope.$eval(attrs.ngEnter);
+    				});
+    				event.preventDefault();
+    			}
+    		});
+    	};
+
+    	return {
+    		link:linkFn
+    	};
     };
  })();

@@ -13,12 +13,25 @@
     </div>
     <div class="col-xs-12 col-sm-8 search-div">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="London Tube Station Name or Post Code" ng-model="searchPostCode.postCode">
-            <span class="input-group-btn">
-                <button class="btn btn-info" type="button" ng-click="findZone(searchPostCode.postCode)">Find Zone</button>
-            </span>
-        </div>
-    </div>
+			<input type="text" class="form-control"
+				placeholder="London Tube Station Name or Post Code"
+				ng-model="searchPostCode.postCode"
+				ng-keydown="stationSearch($event)" ng-keyup="search($event)"
+				ng-enter="findZone(searchPostCode.postCode)"> <span class="input-group-btn">
+				<button class="btn btn-info" type="button"
+					ng-click="findZone(searchPostCode.postCode)">Find Zone</button>
+			</span>
+		</div>
+		<div ng-show="searchResultList && searchResultList.length">
+			<ul class="company-results h7" close-dropdown>
+				<li ng-if="searchResult.name"
+					ng-repeat="searchResult in searchResultList | orderBy:'organizationName'"
+					ng-click="showStation(searchResult.name)">
+					<div ng-bind="searchResult.name"></div>
+				</li>
+			</ul>
+		</div>
+	</div>
     <div class="col-xs-12 col-sm-12 col-lg-8 zone-details-div" ng-show="displayViewDetails && zoneDetails.length && !viewMap && !displaySearchStation">
         <table class="table table-striped">
             <thead>
