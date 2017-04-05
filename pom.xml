@@ -4,7 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.springframework</groupId>
-    <artifactId>london-zone</artifactId>
+    <packaging>war</packaging>
+    
+    <artifactId>londonzone</artifactId>
     <version>0.1.0</version>
 
     <parent>
@@ -52,6 +54,12 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
+         <!-- marked the embedded servlet container as provided -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -60,6 +68,7 @@
 
 
     <build>
+    <finalName>londonzone</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -67,5 +76,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
