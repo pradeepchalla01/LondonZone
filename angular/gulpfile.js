@@ -21,8 +21,15 @@ var gulp            = require('gulp'),
     $               = require('gulp-load-plugins')(),
     del             = require('del');
     runSequence     = require('run-sequence');
+    exec = require('child_process').exec;
 
-
+gulp.task('server', function(cb) {
+    exec('node server.js', function (err, stdout, stderr) {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
+});
 // optimize images
 gulp.task('images', function() {
   return gulp.src('./images/**/*')
@@ -78,15 +85,6 @@ gulp.task('fonts', function() {
   gulp.src('./fonts/**/*.{ttf,woff,eof,eot,svg}')
     .pipe($.changed('./_build/fonts'))
     .pipe(gulp.dest('./_build/fonts'));
-});
-
-// start webserver
-gulp.task('server', function(done) {
-  return browserSync({
-    server: {
-      baseDir: './'
-    }
-  }, done);
 });
 
 // start webserver from _build folder to check how it will look in production
@@ -231,7 +229,9 @@ gulp.task('build:size', function() {
 // default task to be run with `gulp` command
 // this default task will run BrowserSync & then use Gulp to watch files.
 // when a file is changed, an event is emitted to BrowserSync with the filepath.
-gulp.task('default', ['browser-sync', 'sass', 'minify-css'], function() {
+gulp.task('default', ['server', 'sass', 'minify-css'], function() {});
+
+gulp.task('build-local', ['browser-sync', 'sass', 'minify-css'], function() {
   gulp.watch('styles/*.css', function(file) {
     if (file.type === "changed") {
       reload(file.path);
@@ -241,7 +241,6 @@ gulp.task('default', ['browser-sync', 'sass', 'minify-css'], function() {
   gulp.watch(['app/*.js', 'app/**/*.js', 'components/**/*.js', 'js/*.js'], ['bs-reload']);
   gulp.watch(['app/**/*.scss', 'styles/**/*.scss'], ['sass', 'minify-css']);
 });
-
 
 /**
  * build task:
